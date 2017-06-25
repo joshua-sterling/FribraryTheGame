@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c953cd49eb3fe8742adaccb6d945ac61, type: 3}
+  m_Name: AllConditions
+  m_EditorClassIdentifier: 
+  conditions:
+  - {fileID: 114159357061828958}
+  - {fileID: 114730708425751760}
+--- !u!114 &114159357061828958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48890a8bc4f96af4e86f93b3effe42e6, type: 3}
+  m_Name: New Condition
+  m_EditorClassIdentifier: 
+  description: 4e657720436f6e646974696f6e
+  satisfied: 0
+  hash: -1182492049
+--- !u!114 &114730708425751760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48890a8bc4f96af4e86f93b3effe42e6, type: 3}
+  m_Name: PickupKey
+  m_EditorClassIdentifier: 
+  description: 5069636b75704b6579
+  satisfied: 0
+  hash: -1811694383
