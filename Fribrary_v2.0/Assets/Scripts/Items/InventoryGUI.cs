@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class InventoryGUI : MonoBehaviour {
 
-    private Rect inventoryWindowRect = new Rect(800, 100, 210, 280);
+    private Rect inventoryWindowRect = new Rect(1600, 100, 210, 280);
     private bool showInventoryWindow = false;
 
     public Sprite keyIcon, emptyIcon;
 
-    public Texture2D keyTexture, emptyTexture;
-
-    
+    public Texture2D keyTexture, emptyTexture;   
 
 
     private void Start()
@@ -27,7 +25,7 @@ public class InventoryGUI : MonoBehaviour {
     //set up the inventory window
     private void OnGUI()
     {
-        showInventoryWindow = GUI.Toggle(new Rect(800, 50, 100, 50), showInventoryWindow, "Inventory");
+        showInventoryWindow = GUI.Toggle(new Rect(1600, 50, 100, 50), showInventoryWindow, "Inventory");
 
         if(showInventoryWindow)
         {

@@ -4,52 +4,54 @@ using UnityEngine;
 
 public class ItemCollision : MonoBehaviour {
 
-    private bool display = false;
-    private GameObject currentCollision;
-    private Item currentItem;
+    private bool display = false;                           //show the item in inventory
+    private GameObject currentCollision;                    //what is the most recent object collided
+    private Item currentItem;                               //what is the most recent item collided
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         
-        Debug.Log("Collision detected");
+        Debug.Log("Collision detected");                        //log to console
         Debug.Log(other.gameObject.tag);
-        if (other.gameObject.tag == "Collectable")
+        if (other.gameObject.tag == "Collectable")                          //only take action if the tag is Collectable
         {
-            display = true;
-            currentCollision = other.gameObject;
-            currentItem = other.gameObject.GetComponent<Item>();
-            Debug.Log("Colliding with collectable");            
+            display = true;                                             //show it in inventory
+            currentCollision = other.gameObject;                        //set the current collision object
+            currentItem = other.gameObject.GetComponent<Item>();        //set the current collision item
+            Debug.Log("Colliding with collectable");                   //log to console
         }
 
     }
 
     private void OnGUI()
     {
-        if (display)
+        if (display)                            //is there something to show in teh inventory
         {
-            bool slotFound = false;
-            int invCounter = 0;
+            bool slotFound = false;             //see if there is room in inventory
+            int invCounter = 0;                 //iterator
             while(!slotFound && invCounter < gameObject.GetComponent<Player>().inventory.Count)
             {              
-                if (gameObject.GetComponent<Player>().inventory[invCounter].itemID == 0)
+                if (gameObject.GetComponent<Player>().inventory[invCounter].itemID == 0)    //look for item ID 0, which is empty spot
                 {
-                    gameObject.GetComponent<Player>().inventory[invCounter] = currentCollision.gameObject.GetComponent<Item>();
-                    gameObject.GetComponent<Player>().inventory[invCounter].itemObject = currentCollision;
-                    slotFound = true;
-                    if (currentCollision.tag == "Collectable")
+                    gameObject.GetComponent<Player>().inventory[invCounter] =                   //put object in inventory
+                        currentCollision.gameObject.GetComponent<Item>();  
+                    gameObject.GetComponent<Player>().inventory[invCounter].itemObject =        //put item in inventory
+                        currentCollision;
+                    slotFound = true;                                                       //spot was found, stop looking
+                    if (currentCollision.tag == "Collectable")                      //double check it is collectable
                     {
-                        Destroy(currentCollision);
-                        Debug.Log("object destroyed");
+                        Destroy(currentCollision);                                  //destroy the object
+                        Debug.Log("object destroyed");                      //log to console
 
                     }
                 }
-                else { invCounter++; }
+                else { invCounter++; }                              //not an empty spot, look at the next one
             
             }
             if(!slotFound)
-            { Debug.Log("Inventory is full!"); }
+            { Debug.Log("Inventory is full!"); }                //no slot found means inventory is full
             
-            display = false;
+            display = false;                                    //reset the control
         }
     }
 

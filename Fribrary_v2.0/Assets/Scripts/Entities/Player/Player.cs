@@ -12,22 +12,17 @@ public class Player : Entity {
     public Sprite right;
     public Sprite left;
 
+    //these bools contorl parameters on the player animation transitions
     bool walkLeft = false, walkRight = false, walkUp = false, walkDown = false, playerIdle = false;
 
     public SpriteRenderer spriteParent;
 
-    private Animator animator;
+    //instance of the animator for this object
+    private Animator animator;   
 
-   
-
+    //creates an inventory instance for the player
     public List<Item> inventory = new List<Item>();
-
-
-    //  public PlayerItemManager inventory;
-
-
-
-
+    
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
@@ -36,12 +31,12 @@ public class Player : Entity {
 	// Update is called once per frame
 	void Update ()
     {
-        walkRight = Input.GetKey(KeyCode.D);
-        walkDown = Input.GetKey(KeyCode.S);
-        walkUp = Input.GetKey(KeyCode.W);
-        walkLeft = Input.GetKey(KeyCode.A);
+        walkRight = Input.GetKey(KeyCode.D);                //if D is pressed, set walk right true
+        walkDown = Input.GetKey(KeyCode.S);                 //is S is pressed, set walk down true
+        walkUp = Input.GetKey(KeyCode.W);                   //if W is pressed, set walk up true
+        walkLeft = Input.GetKey(KeyCode.A);                 //if A is pressed, set walk left true
 
-        if(!walkRight && !walkDown && !walkUp && !walkLeft)
+        if(!walkRight && !walkDown && !walkUp && !walkLeft)         //if A,S,W,D not pressed call idle animation
         {
             playerIdle = true;
         }
@@ -50,13 +45,13 @@ public class Player : Entity {
             playerIdle = false;
         }
         
-        animator.SetBool("WalkDown", walkDown);
+        animator.SetBool("WalkDown", walkDown);                 //call animation parameters to trigger appropriate animation
         animator.SetBool("WalkRight", walkRight);
         animator.SetBool("WalkUp", walkUp);
         animator.SetBool("WalkLeft", walkLeft);
         animator.SetBool("PlayerIdle", playerIdle);
 
-    
+        //Actual player movement on the screen
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
            
