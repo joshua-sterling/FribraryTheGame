@@ -1,9 +1,36 @@
 fileFormatVersion: 2
 guid: ed25558d46613344795b3d2631d9971d
-timeCreated: 1498789535
+timeCreated: 1499272507
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Spritesheet003_0
+    21300002: Spritesheet003_1
+    21300004: Spritesheet003_2
+    21300006: Spritesheet003_3
+    21300008: Spritesheet003_4
+    21300010: Spritesheet003_5
+    21300012: Spritesheet003_6
+    21300014: Spritesheet003_7
+    21300016: Spritesheet003_8
+    21300018: Spritesheet003_9
+    21300020: Spritesheet003_10
+    21300022: Spritesheet003_11
+    21300024: Spritesheet003_12
+    21300026: Spritesheet003_13
+    21300028: Spritesheet003_14
+    21300030: Spritesheet003_15
+    21300032: Spritesheet003_16
+    21300034: Spritesheet003_17
+    21300036: Spritesheet003_18
+    21300038: Spritesheet003_19
+    21300040: Spritesheet003_20
+    21300042: Spritesheet003_21
+    21300044: Spritesheet003_22
+    21300046: Spritesheet003_23
+    21300048: Spritesheet003_24
+    21300050: Spritesheet003_25
+    21300052: Spritesheet003_26
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -58,9 +85,376 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Spritesheet003_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 787
+        width: 96
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_1
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 948
+        width: 68
+        height: 28
+      alignment: 9
+      pivot: {x: 0.053333506, y: 0.5000022}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_2
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 948
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_3
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 952
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.107042104, y: 0.48266602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_4
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 952
+        width: 68
+        height: 28
+      alignment: 9
+      pivot: {x: 0.07168983, y: 0.4851423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_5
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 952
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_6
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 956
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.16483052, y: 0.50000256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 886
+        width: 68
+        height: 28
+      alignment: 9
+      pivot: {x: 0.06557083, y: 0.5000022}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_8
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 886
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_9
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 890
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.11859979, y: 0.4653295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_10
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 890
+        width: 68
+        height: 28
+      alignment: 9
+      pivot: {x: 0.08392738, y: 0.4702824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_11
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 890
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_12
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 894
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.14171515, y: 0.48266602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 798
+        width: 36
+        height: 36
+      alignment: 9
+      pivot: {x: 0.11859979, y: 0.4075402}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_14
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 798
+        width: 36
+        height: 36
+      alignment: 9
+      pivot: {x: 0.107042104, y: 0.4306556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_15
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 811
+        width: 50
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5, y: 0.784684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 810
+        width: 50
+        height: 19
+      alignment: 9
+      pivot: {x: 0.48335692, y: 0.784684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_18
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 617
+        width: 113
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5735846, y: 0.21128234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_19
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 575
+        width: 92
+        height: 128
+      alignment: 9
+      pivot: {x: 0.43974635, y: 0.13188505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_20
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 509
+        width: 93
+        height: 55
+      alignment: 9
+      pivot: {x: 0.50577503, y: 0.5488248}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_21
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 658
+        width: 47
+        height: 46
+      alignment: 9
+      pivot: {x: 0.71710986, y: 0.4766514}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_22
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 587
+        width: 72
+        height: 49
+      alignment: 9
+      pivot: {x: 0.73123425, y: 0.50000125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_23
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 640
+        width: 65
+        height: 86
+      alignment: 9
+      pivot: {x: 0.45868766, y: 0.80599976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_24
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 613
+        width: 71
+        height: 94
+      alignment: 9
+      pivot: {x: 0.4546148, y: 0.8770849}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_25
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 517
+        width: 75
+        height: 88
+      alignment: 9
+      pivot: {x: 0.45703533, y: 0.90279526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spritesheet003_26
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 533
+        width: 80
+        height: 40
+      alignment: 9
+      pivot: {x: 0.59398574, y: 0.6745453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
