@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - Collectable
+  - Projectile
   layers:
   - Default
   - TransparentFX
