@@ -100,6 +100,24 @@ public class ModalPanel : MonoBehaviour {
 
     }
 
+    public void Choice(string question, UnityAction okayEvent)
+    {
+        modalPanelObject.SetActive(true);                    //open the modal panel
+             
+
+        okayButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
+        okayButton.onClick.AddListener(okayEvent);            //add listener for the No event that is passed in
+        okayButton.onClick.AddListener(closePanel);          //add listener for the close panel
+
+        this.question.text = question;                          //set the text to be displayed
+
+        this.iconImage.gameObject.SetActive(false);        //no background image yet
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        okayButton.gameObject.SetActive(true);
+
+    }
+
 
     void closePanel()
     {

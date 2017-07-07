@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadUI.unity
   - enabled: 1
     path: Assets/Scenes/main_level.unity
+  - enabled: 1
+    path: Assets/Scenes/Fight_Scene.unity

@@ -24,8 +24,11 @@ public class collision : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision WITH NPC");
-        modalPanel.Choice("This is a test message with 2 buttons to choose from", myYesAction, myNoAction);
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Collision WITH NPC");
+            modalPanel.Choice("This is a test message with 2 buttons to choose from", myYesAction, myNoAction);
+        }
     }
 
     //set up some test functions - what will happen when the button gets pressed

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemCollision : MonoBehaviour {
 
@@ -19,6 +20,16 @@ public class ItemCollision : MonoBehaviour {
             currentCollision = other.gameObject;                        //set the current collision object
             currentItem = other.gameObject.GetComponent<Item>();        //set the current collision item
             Debug.Log("Colliding with collectable");                   //log to console
+            if(other.gameObject.GetComponent<Item>().itemID == 2)       //don't display donut anymore
+            {
+                GameController.controller.donut = false;
+            }
+        }
+        else if(other.gameObject.tag == "Enemy")
+        {
+            GameController.controller.playerLocation = gameObject.GetComponent<Rigidbody2D>().position;
+            SceneManager.LoadScene(2);
+            Debug.Log("This should load the fight scene..");
         }
 
     }
