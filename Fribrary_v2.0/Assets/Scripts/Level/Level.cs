@@ -27,8 +27,9 @@ public class Level : MonoBehaviour {
     public Entity player;
     public Entity robot;
 
-    Vector2 playerSpawn = new Vector2(2,2);
-    Vector2 robotSpawn = new Vector2(3, 2);
+    public GameObject donutObject, keyObject;
+
+    Vector2 robotSpawn = new Vector2(7, 4);
 
 
     void Start ()
@@ -74,8 +75,19 @@ public class Level : MonoBehaviour {
         Instantiate(barhorizontal, new Vector3(2,5), Quaternion.identity);
 
 
-        player.transform.position = playerSpawn;
+        player.transform.position = GameController.controller.playerLocation;
         robot.transform.position = robotSpawn;
+
+        if(GameController.controller.donut)
+        {
+            donutObject.SetActive(true);
+            Debug.Log("Donue is active");
+        }
+        else
+        {
+            donutObject.SetActive(false);
+            Debug.Log("Donue is NOT active");
+        }
 
     }
 }

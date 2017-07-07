@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : Entity {
 
     public int direction;
+    private float currentHealth, maxHealth;
+
+    public Slider healthbar;
 
     //change the player graphic to face the correct direction
     public Sprite down;
@@ -26,6 +31,11 @@ public class Player : Entity {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
+
+        currentHealth = GameController.controller.playerCurrentHealth;
+        maxHealth = GameController.controller.playerMaxHealth;
+        
+        healthbar.value = calculateHealth();
     }
 	
 	// Update is called once per frame
@@ -112,6 +122,10 @@ public class Player : Entity {
 
     }
 
-   
+    float calculateHealth()
+    {
+        return currentHealth / maxHealth;
+    }
+
 
 }
