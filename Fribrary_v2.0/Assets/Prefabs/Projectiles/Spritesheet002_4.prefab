@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 61477629382142402}
   - component: {fileID: 114415130875009106}
   m_Layer: 0
-  m_Name: Spritesheet002_3
-  m_TagString: Projectile
+  m_Name: Spritesheet002_4
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  direction: 1
+  direction: 0
 --- !u!212 &212686738864969282
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -141,5 +141,5 @@ SpriteRenderer:
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300004, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
