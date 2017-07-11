@@ -5,31 +5,21 @@ using UnityEngine;
 public class FireProjectile : MonoBehaviour {
 
     public GameObject projectileToFire;
+
+    public bool playerTurn = true;
    
 
     public void  shootProjectile()
     {
-        GameObject projectile = (GameObject)Instantiate(projectileToFire, transform.position, Quaternion.identity);
-
-        StartCoroutine(Waiting());
-
-        
+        {
+            GameObject projectile = (GameObject)Instantiate(projectileToFire, transform.position, Quaternion.identity);            
+           
+        }
     }
       
+      
 
-    public void fightWatiTime()
-    {
-        StartCoroutine(Waiting());
-    }
-
-    IEnumerator Waiting()
-    {
-       
-        yield return new WaitForSecondsRealtime(3);
-
-        GameObject projectile2 = (GameObject)Instantiate(projectileToFire, transform.position, Quaternion.identity);
-    }
-
+   
 
 
 }

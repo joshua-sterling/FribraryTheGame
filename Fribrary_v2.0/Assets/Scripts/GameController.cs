@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 
     
 
-    public bool donut = true,
+    public bool donut = false,
         key = false;
 
 
