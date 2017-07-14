@@ -42,21 +42,21 @@ public class InventoryGUI : MonoBehaviour {
         GUILayout.BeginArea(new Rect(5, 50, 320, 320));
 
         GUILayout.BeginHorizontal();
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[0].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[1].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[2].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[0].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[1].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[2].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[3].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[4].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[5].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[3].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[4].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[5].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[6].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[7].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
-        GUILayout.Button(gameObject.GetComponent<Player>().inventory[8].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[6].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[7].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
+        GUILayout.Button(GameController.controller.inventory[8].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
         GUILayout.EndHorizontal();
 
         GUILayout.EndArea();

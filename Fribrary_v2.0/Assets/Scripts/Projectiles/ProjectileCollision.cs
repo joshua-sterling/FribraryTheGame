@@ -17,7 +17,7 @@ public class ProjectileCollision : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.gameObject.tag == "Projectile")
+        if ((collision.gameObject.tag == "Projectile" && this.gameObject.tag == "Enemy")||(collision.gameObject.tag == "EnemyProjectile" && this.gameObject.tag == "Player"))
         {
             
             Debug.Log("You just got fireballed");

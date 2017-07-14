@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class FightManager : MonoBehaviour {
 
     public FireProjectile enemyFire;
     public FireProjectile playerFire;
+    public Button attackbutton;
 
     bool enemyTurn = false;                     //is it the enemy's turn
     bool playerTurn = false;
@@ -15,12 +17,16 @@ public class FightManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerTurn = true;
+        attackbutton.interactable = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-        if(enemyTurn) { enemyAttack(); }
+        if(enemyTurn)
+        {            
+            enemyAttack();
+        }
 
 	}
 
@@ -33,6 +39,7 @@ public class FightManager : MonoBehaviour {
             StartCoroutine(Waiting());
 
             playerTurn = true;
+            
         }
        
     }
@@ -42,16 +49,20 @@ public class FightManager : MonoBehaviour {
         if (playerTurn)
         {
             playerFire.shootProjectile();
+           
             playerTurn = false;           
             enemyTurn = true;
+           
         }
     }
 
     IEnumerator Waiting()
     {
-
-        yield return new WaitForSecondsRealtime(3);
-        enemyFire.shootProjectile();
+        attackbutton.interactable = false;                  //disable attack button for player
+        yield return new WaitForSecondsRealtime(3);         //wait 3 seconds
+        enemyFire.shootProjectile();                        //enemy attack
+        yield return new WaitForSecondsRealtime(3);         //wait 3 seconds
+        attackbutton.interactable = true;                   //enable attack button for player
     }
 
 

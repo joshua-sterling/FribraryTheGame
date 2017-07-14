@@ -24,6 +24,8 @@ public class ItemCollision : MonoBehaviour {
             {
                 GameController.controller.donut = false;
             }
+            //**************************************TESTING
+            //GameController.controller.inventory[5] = other.gameObject.GetComponent<Item>().Clone();
         }
         else if(other.gameObject.tag == "Enemy")
         {
@@ -40,18 +42,21 @@ public class ItemCollision : MonoBehaviour {
         {
             bool slotFound = false;             //see if there is room in inventory
             int invCounter = 0;                 //iterator
-            while(!slotFound && invCounter < gameObject.GetComponent<Player>().inventory.Count)
-            {              
-                if (gameObject.GetComponent<Player>().inventory[invCounter].itemID == 0)    //look for item ID 0, which is empty spot
+            //while(!slotFound && invCounter < gameObject.GetComponent<Player>().inventory.Count)
+            while (!slotFound && invCounter < GameController.controller.inventory.Count)
+            {
+                //if (gameObject.GetComponent<Player>().inventory[invCounter].itemID == 0)    //look for item ID 0, which is empty spot
+                if (GameController.controller.inventory[invCounter].itemID == 0)
                 {
-                    gameObject.GetComponent<Player>().inventory[invCounter] =                   //put object in inventory
-                        currentCollision.gameObject.GetComponent<Item>();  
-                    gameObject.GetComponent<Player>().inventory[invCounter].itemObject =        //put item in inventory
+                    GameController.controller.inventory[invCounter] =                   //put object in inventory
+                        currentCollision.gameObject.GetComponent<Item>();
+                    GameController.controller.inventory.Add(currentCollision.gameObject.GetComponent<Item>());      //use Add() instead
+                    GameController.controller.inventory[invCounter].itemObject =        //put item in inventory
                         currentCollision;
                     slotFound = true;                                                       //spot was found, stop looking
                     if (currentCollision.tag == "Collectable")                      //double check it is collectable
                     {
-                        Destroy(currentCollision);                                  //destroy the object
+                        //Destroy(currentCollision);                                  //destroy the object
                         Debug.Log("object destroyed");                      //log to console
 
                     }

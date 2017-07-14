@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour {
     public float playerExperience;
     public Vector2 playerLocation;
 
-    
+    //creates an inventory instance for the player
+    public List<Item> inventory = new List<Item>();
+
 
     public bool donut = false,
         key = false;
