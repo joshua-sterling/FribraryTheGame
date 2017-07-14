@@ -10,23 +10,18 @@ public class Player : Entity {
     private float currentHealth, maxHealth;
 
     public Slider healthbar;
-
-    //change the player graphic to face the correct direction
-    public Sprite down;
-    public Sprite up;
-    public Sprite right;
-    public Sprite left;
+     
 
     //these bools contorl parameters on the player animation transitions
     bool walkLeft = false, walkRight = false, walkUp = false, walkDown = false, playerIdle = false;
 
-    public SpriteRenderer spriteParent;
+    //public SpriteRenderer spriteParent;
 
     //instance of the animator for this object
     private Animator animator;   
 
     //creates an inventory instance for the player
-    public List<Item> inventory = new List<Item>();
+  //  public List<Item> inventory = new List<Item>();
     
     // Use this for initialization
     void Start () {
@@ -66,47 +61,27 @@ public class Player : Entity {
         {
            
             GetComponent<Rigidbody2D>().transform.position += Vector3.up * speed * Time.deltaTime;
-            direction = 1;     
+               
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             
             GetComponent<Rigidbody2D>().transform.position += Vector3.down * speed * Time.deltaTime;
-            direction = 0;
+           
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             
             GetComponent<Rigidbody2D>().transform.position += Vector3.left * speed * Time.deltaTime;
-            direction = 2;
+           
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             
             GetComponent<Rigidbody2D>().transform.position += Vector3.right * speed * Time.deltaTime;
-            direction = 3;
+           
         }
         
-
-
-
-
-        if (direction == 0)
-        {
-            spriteParent.sprite = down;
-        }
-        if (direction == 1)
-        {
-            spriteParent.sprite = up;
-        }
-        if (direction == 2)
-        {
-            spriteParent.sprite = left;
-        }
-        if (direction == 3)
-        {
-            spriteParent.sprite = right;
-        }
 
         if (health <= 0)
         {
@@ -116,11 +91,7 @@ public class Player : Entity {
     }
 
     public void Die() { print("Well, crap."); }
-
-    public void changeDirection()
-    {
-
-    }
+      
 
     float calculateHealth()
     {

@@ -50,7 +50,7 @@ public class EntityHealth : MonoBehaviour {
   
     public void TakeDamage()
     {
-        currentHealth -= 10;
+        currentHealth -= 35;
         if(currentHealth < 0)
         {
             Die();
