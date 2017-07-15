@@ -13,9 +13,17 @@ public class GameController : MonoBehaviour {
     public float playerExperience;
     public Vector2 playerLocation;
 
+    public Entity playerPlaceHolder;
+    public bool questActive = false;
+    public bool messagePanelActive = false;
+
+    
+
     //creates an inventory instance for the player
     public List<Item> inventory = new List<Item>();
+    public List<ItemTemplate> inventoryTemplate = new List<ItemTemplate>();
 
+    public int robotsSpawned = 0;
 
     public bool donut = false,
         key = false;
@@ -34,5 +42,6 @@ public class GameController : MonoBehaviour {
         }
 
 	}
-	
+
+ 
 }

@@ -11,8 +11,12 @@ public class FightManager : MonoBehaviour {
     public FireProjectile playerFire;
     public Button attackbutton;
 
+    public GameObject player, enemy;
+
+
     bool enemyTurn = false;                     //is it the enemy's turn
     bool playerTurn = false;
+      
 
 	// Use this for initialization
 	void Start () {
@@ -32,8 +36,10 @@ public class FightManager : MonoBehaviour {
 
     public void enemyAttack()
     {
-        if (enemyTurn)
+        if (enemyTurn && !enemy.gameObject.GetComponent<EntityHealth>().dead)
         {
+            Debug.Log("Unity thinks the enemy is dead?");
+            Debug.Log(enemy.gameObject.GetComponent<EntityHealth>().dead);
             enemyTurn = false;
            
             StartCoroutine(Waiting());
@@ -60,7 +66,11 @@ public class FightManager : MonoBehaviour {
     {
         attackbutton.interactable = false;                  //disable attack button for player
         yield return new WaitForSecondsRealtime(3);         //wait 3 seconds
-        enemyFire.shootProjectile();                        //enemy attack
+        Debug.Log("EnemyShooting");
+        Debug.Log("Unity thinks the enemy is dead?");
+        Debug.Log(enemy.gameObject.GetComponent<EntityHealth>().dead);
+        if (!enemy.gameObject.GetComponent<EntityHealth>().dead)
+        { enemyFire.shootProjectile(); }                        //enemy attack
         yield return new WaitForSecondsRealtime(3);         //wait 3 seconds
         attackbutton.interactable = true;                   //enable attack button for player
     }

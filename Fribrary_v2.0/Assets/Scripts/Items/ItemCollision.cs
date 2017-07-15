@@ -24,6 +24,10 @@ public class ItemCollision : MonoBehaviour {
             {
                 GameController.controller.donut = false;
             }
+            else if (other.gameObject.GetComponent<Item>().itemID == 1)       //don't display donut anymore
+            {
+                GameController.controller.key = false;
+            }
             //**************************************TESTING
             //GameController.controller.inventory[5] = other.gameObject.GetComponent<Item>().Clone();
         }
@@ -51,12 +55,14 @@ public class ItemCollision : MonoBehaviour {
                     GameController.controller.inventory[invCounter] =                   //put object in inventory
                         currentCollision.gameObject.GetComponent<Item>();
                     GameController.controller.inventory.Add(currentCollision.gameObject.GetComponent<Item>());      //use Add() instead
+                   
                     GameController.controller.inventory[invCounter].itemObject =        //put item in inventory
                         currentCollision;
                     slotFound = true;                                                       //spot was found, stop looking
                     if (currentCollision.tag == "Collectable")                      //double check it is collectable
                     {
                         //Destroy(currentCollision);                                  //destroy the object
+                        currentCollision.gameObject.transform.position= new Vector2 (-15,0);              //instead of destroying, throw off screen
                         Debug.Log("object destroyed");                      //log to console
 
                     }

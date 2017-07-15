@@ -101,7 +101,7 @@ MonoBehaviour:
   itemIcon: {fileID: 2800000, guid: 31642a2dbf15a104d9df4296e23edff4, type: 3}
   itemDescription: TEST PLEASE WORK
   itemSprite: {fileID: 21300000, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
-  itemObject: {fileID: 0}
+  itemObject: {fileID: 1127172032630696, guid: dd5a1ad6469aa8b48b83f0208da988c6, type: 2}
 --- !u!212 &212231323266521214
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -19,11 +19,11 @@ public class ProjectileCollision : MonoBehaviour {
         
         if ((collision.gameObject.tag == "Projectile" && this.gameObject.tag == "Enemy")||(collision.gameObject.tag == "EnemyProjectile" && this.gameObject.tag == "Player"))
         {
-            
+            this.gameObject.GetComponent<EntityHealth>().TakeDamage();
             Debug.Log("You just got fireballed");
             Destroy(collision.gameObject);
             GameObject explode = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
-            this.gameObject.GetComponent<EntityHealth>().TakeDamage();
+            
         }
         else
         {

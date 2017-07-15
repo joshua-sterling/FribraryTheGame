@@ -8,7 +8,7 @@ public class collision : MonoBehaviour {
 
     private ModalPanel modalPanel;
 
-    private UnityAction myYesAction, myNoAction, myCancelAction;            //set up the actions
+    private UnityAction myYesAction, myNoAction, myOkayAction;            //set up the actions
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class collision : MonoBehaviour {
 
         myYesAction = new UnityAction(TestYesFunction);                 //these actions get passed to the button call 
         myNoAction = new UnityAction(TestNoFunction);
-        myCancelAction = new UnityAction(TestCancelFunction);
+        myOkayAction = new UnityAction(TestOkayFunction);
 
 
     }
@@ -27,7 +27,14 @@ public class collision : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Collision WITH NPC");
-            modalPanel.Choice("This is a test message with 2 buttons to choose from", myYesAction, myNoAction);
+            if (GameController.controller.questActive)                  //if player is already on quest, don't offer it again
+            {
+                modalPanel.Choice("We can't waste any more time - go get that salsa recipe!", myOkayAction);
+            }
+            else
+            {
+                modalPanel.Choice("These are dark times for Fribrary - kitchen bots are going wild.  Will you get me the salsa recipe?", myYesAction, myNoAction);
+            }
         }
     }
 
@@ -35,6 +42,8 @@ public class collision : MonoBehaviour {
     void TestYesFunction()
     {
         Debug.Log("The YES button got pressed after collision");
+        GameController.controller.questActive = true;
+      
     }
 
     void TestNoFunction()
@@ -42,9 +51,9 @@ public class collision : MonoBehaviour {
         Debug.Log("The NO button got pressed after collision");
     }
 
-    void TestCancelFunction()
+    void TestOkayFunction()
     {
-        Debug.Log("The CANCEL button got pressed after collision");
+        Debug.Log("The OKAY button got pressed after collision");
     }
 
 }

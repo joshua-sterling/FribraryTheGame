@@ -12,6 +12,7 @@ public class FireProjectile : MonoBehaviour {
     public void  shootProjectile()
     {
         {
+            Debug.Log("Fire Projectile Called");
             GameObject projectile = (GameObject)Instantiate(projectileToFire, transform.position, Quaternion.identity);            
            
         }
