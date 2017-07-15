@@ -10,6 +10,7 @@ public class ModalPanel : MonoBehaviour {
     public Image iconImage;
     public Button yesButton, noButton, okayButton;
     public GameObject modalPanelObject;
+   
 
     private static ModalPanel modalPanel;                       //keep a static reference to this modal panel
 
@@ -31,6 +32,7 @@ public class ModalPanel : MonoBehaviour {
      public void Choice(string question, UnityAction yesEvent, UnityAction noEvent, UnityAction okayEvent)
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
+        GameController.controller.messagePanelActive = true;
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -56,6 +58,7 @@ public class ModalPanel : MonoBehaviour {
     public void Choice(string question, Sprite iconImage, UnityAction yesEvent, UnityAction noEvent, UnityAction okayEvent)
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
+        GameController.controller.messagePanelActive = true;
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -82,6 +85,7 @@ public class ModalPanel : MonoBehaviour {
     public void Choice(string question, UnityAction yesEvent, UnityAction noEvent)
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
+        GameController.controller.messagePanelActive = true;
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -103,7 +107,8 @@ public class ModalPanel : MonoBehaviour {
     public void Choice(string question, UnityAction okayEvent)
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
-             
+        GameController.controller.messagePanelActive = true;
+
 
         okayButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         okayButton.onClick.AddListener(okayEvent);            //add listener for the No event that is passed in
@@ -122,6 +127,7 @@ public class ModalPanel : MonoBehaviour {
     void closePanel()
     {
         modalPanelObject.SetActive(false);          //close the modal panel window
+        GameController.controller.messagePanelActive = false;
     }
 
 }

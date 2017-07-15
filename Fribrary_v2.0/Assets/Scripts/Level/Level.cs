@@ -6,6 +6,7 @@ public class Level : MonoBehaviour {
 
     private int levelWidth;
     private int levelHeight;
+      
 
     public Transform floorTile;
     public Transform stoneWallTile;
@@ -29,7 +30,8 @@ public class Level : MonoBehaviour {
 
     public GameObject donutObject, keyObject;
 
-    Vector2 robotSpawn = new Vector2(7, 4);
+    
+    Vector2 robotSpawn2 = new Vector2(5, 14);
 
 
     void Start ()
@@ -76,19 +78,41 @@ public class Level : MonoBehaviour {
 
 
         player.transform.position = GameController.controller.playerLocation;
-        robot.transform.position = robotSpawn;
+        //robot.transform.position = robotSpawn;
+
+        createEnemy();
 
         if(GameController.controller.donut)
         {
             donutObject.SetActive(true);
-            Debug.Log("Donue is active");
+            Debug.Log("Donut is active");
         }
         else
         {
             donutObject.SetActive(false);
-            Debug.Log("Donue is NOT active");
+            Debug.Log("Donut is NOT active");
         }
 
+        if (GameController.controller.key)
+        {
+            keyObject.SetActive(true);
+            Debug.Log("KEY is active");
+        }
+        else
+        {
+            keyObject.SetActive(false);
+            Debug.Log("KEY is NOT active");
+        }
+
+    }
+
+    public void createEnemy()
+    {
+        if (GameController.controller.robotsSpawned < 3)
+        {
+            Instantiate(robot, robotSpawn2, Quaternion.identity);
+            GameController.controller.robotsSpawned += 1;
+        }
     }
 }
 

@@ -583,6 +583,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 50
   maxHealth: 100
+  damageTaken: 101
+  dead: 0
   healthbar: {fileID: 361298630}
 --- !u!114 &230401413
 MonoBehaviour:
@@ -3424,6 +3426,8 @@ MonoBehaviour:
   enemyFire: {fileID: 230401413}
   playerFire: {fileID: 1459797829}
   attackbutton: {fileID: 1852515791}
+  player: {fileID: 1459797826}
+  enemy: {fileID: 230401408}
 --- !u!114 &275621554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5566,6 +5570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 50
+  damageTaken: 10
+  dead: 0
   healthbar: {fileID: 722957377}
 --- !u!114 &1459797831
 MonoBehaviour:

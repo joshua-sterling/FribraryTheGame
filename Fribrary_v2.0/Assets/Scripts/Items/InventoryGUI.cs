@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryGUI : MonoBehaviour {
 
@@ -9,9 +10,10 @@ public class InventoryGUI : MonoBehaviour {
 
     public Sprite keyIcon, emptyIcon;
 
-    public Texture2D keyTexture, emptyTexture;   
+    public Texture2D keyTexture, emptyTexture;
 
-
+  
+    
     private void Start()
     {
       
@@ -58,6 +60,9 @@ public class InventoryGUI : MonoBehaviour {
         GUILayout.Button(GameController.controller.inventory[7].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
         GUILayout.Button(GameController.controller.inventory[8].itemIcon, GUILayout.Height(64), GUILayout.Width(64));
         GUILayout.EndHorizontal();
+
+        
+        
 
         GUILayout.EndArea();
     }

@@ -9,6 +9,9 @@ public class EntityHealth : MonoBehaviour {
 
     public float currentHealth;
     public float maxHealth;
+    public float damageTaken;           //for testing
+    public bool dead = false;
+    
 
     public Slider healthbar;
 
@@ -50,7 +53,8 @@ public class EntityHealth : MonoBehaviour {
   
     public void TakeDamage()
     {
-        currentHealth -= 35;
+        Debug.Log("Take damage called");
+        currentHealth -= damageTaken;
         if(currentHealth < 0)
         {
             Die();
@@ -59,7 +63,7 @@ public class EntityHealth : MonoBehaviour {
         healthbar.value = calculateHealth();
     }
 
-    void Die()
+    public void Die()
     {
         currentHealth = 0;
         if (gameObject.tag == "Player")
@@ -67,6 +71,7 @@ public class EntityHealth : MonoBehaviour {
         else if(gameObject.tag == "Enemy")
         {
             modalPanel.Choice("The enemy has been destroyed!", myOkayAction);
+            dead = true;
             Debug.Log("Enemy should have died...");
         }
     }
