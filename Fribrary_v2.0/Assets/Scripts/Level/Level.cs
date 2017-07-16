@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour {
 
@@ -28,10 +29,11 @@ public class Level : MonoBehaviour {
     public Entity player;
     public Entity robot;
 
-    public GameObject donutObject, keyObject;
+    public GameObject donutObject, keyObject, recipeObject;
 
     
     Vector2 robotSpawn2 = new Vector2(5, 14);
+    
 
 
     void Start ()
@@ -105,6 +107,8 @@ public class Level : MonoBehaviour {
         }
 
     }
+
+   
 
     public void createEnemy()
     {

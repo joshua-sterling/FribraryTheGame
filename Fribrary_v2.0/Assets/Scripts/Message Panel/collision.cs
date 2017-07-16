@@ -10,6 +10,9 @@ public class collision : MonoBehaviour {
 
     private UnityAction myYesAction, myNoAction, myOkayAction;            //set up the actions
 
+    public GameObject salsaRecipe;
+    Vector2 recipeSpawn = new Vector2(2, 6);
+
     private void Awake()
     {
         modalPanel = ModalPanel.Instance();
@@ -43,6 +46,7 @@ public class collision : MonoBehaviour {
     {
         Debug.Log("The YES button got pressed after collision");
         GameController.controller.questActive = true;
+        activteQuestItem();
       
     }
 
@@ -55,5 +59,12 @@ public class collision : MonoBehaviour {
     {
         Debug.Log("The OKAY button got pressed after collision");
     }
+
+
+    public void activteQuestItem()
+    {
+        Instantiate(salsaRecipe, recipeSpawn, Quaternion.identity);
+    }
+
 
 }

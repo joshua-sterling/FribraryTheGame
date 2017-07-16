@@ -10,6 +10,7 @@ public class FightManager : MonoBehaviour {
     public FireProjectile enemyFire;
     public FireProjectile playerFire;
     public Button attackbutton;
+    public GameObject[] collectables;
 
     public GameObject player, enemy;
 
@@ -22,7 +23,15 @@ public class FightManager : MonoBehaviour {
 	void Start () {
         playerTurn = true;
         attackbutton.interactable = true;
-	}
+
+        collectables = GameObject.FindGameObjectsWithTag("Collectable");
+        foreach(GameObject coll in collectables)
+        {
+            coll.SetActive(false);
+        }
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
