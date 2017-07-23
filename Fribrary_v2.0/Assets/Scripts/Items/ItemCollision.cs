@@ -28,6 +28,11 @@ public class ItemCollision : MonoBehaviour {
             {
                 GameController.controller.key = false;
             }
+            else if (other.gameObject.GetComponent<Item>().itemID == 3)
+            {
+                GameController.controller.salsaRecipe = false;
+                GameController.controller.hasQuestItem = true;
+            }
             //**************************************TESTING
             //GameController.controller.inventory[5] = other.gameObject.GetComponent<Item>().Clone();
         }

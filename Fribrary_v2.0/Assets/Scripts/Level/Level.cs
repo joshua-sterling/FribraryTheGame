@@ -33,7 +33,8 @@ public class Level : MonoBehaviour {
 
     
     Vector2 robotSpawn2 = new Vector2(5, 14);
-    
+    //Vector2 recipeSpawn = new Vector2(2, 6);
+
 
 
     void Start ()
@@ -104,6 +105,17 @@ public class Level : MonoBehaviour {
         {
             keyObject.SetActive(false);
             Debug.Log("KEY is NOT active");
+        }
+
+        if(GameController.controller.salsaRecipe)
+        {
+            recipeObject.SetActive(true);
+            Debug.Log("Recipe is active");           
+        }
+        else
+        {
+            recipeObject.SetActive(false);
+            Debug.Log("Recipe is NOT active");
         }
 
     }

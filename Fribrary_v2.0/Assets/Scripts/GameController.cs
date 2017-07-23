@@ -18,12 +18,14 @@ public class GameController : MonoBehaviour {
 
     public Player playerPlaceHolder;
     public bool questActive = false;
+    public bool hasQuestItem = false;
     public bool messagePanelActive = false;
 
     public Slider healthbar;
 
- 
-    
+    public GameObject[] collectables;
+
+
 
     //creates an inventory instance for the player
     public List<Item> inventory = new List<Item>();
@@ -32,7 +34,7 @@ public class GameController : MonoBehaviour {
     public int robotsSpawned = 0;
 
     public bool donut = false,
-        key = false;
+        key = false, salsaRecipe = false;
 
 
     // Use this for initialization
@@ -64,11 +66,28 @@ public class GameController : MonoBehaviour {
         data.questActive = questActive;
         data.key = key;
         data.donut = donut;
-        data.inventory.AddRange(inventory);
+        data.recipe = salsaRecipe;
+        data.hasQuestItem = hasQuestItem;
+
+        /*inventory*/
+        data.slot01 = controller.inventory[0].itemID;
+        data.slot02 = controller.inventory[1].itemID;
+        data.slot03 = controller.inventory[2].itemID;
+        data.slot04 = controller.inventory[3].itemID;
+        data.slot05 = controller.inventory[4].itemID;
+        data.slot06 = controller.inventory[5].itemID;
+        data.slot07 = controller.inventory[6].itemID;
+        data.slot08 = controller.inventory[7].itemID;
+        data.slot09 = controller.inventory[8].itemID;
+
        
+
         bf.Serialize(file, data);                                                               //write the instance of serializeable data to file 
         Debug.Log("Data Saved!");
         file.Close();
+
+      
+
     }
 
     public void Load()
@@ -85,10 +104,39 @@ public class GameController : MonoBehaviour {
             questActive = data.questActive;
             key = data.key;
             donut = data.donut;
+            salsaRecipe = data.recipe;
             playerPlaceHolder.calculateHealth();
-            inventory.AddRange(data.inventory);
+            hasQuestItem = data.hasQuestItem;     
             Debug.Log("Data Loaded!");
+
+            //find all potential collectables
+            collectables = GameObject.FindGameObjectsWithTag("Collectable");
+            
+            //bool slotFound = false;             //see if there is room in inventory
+                   
+            
+            for(int i = 0; i<collectables.Length;i++)
+            if(data.slot01 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                {
+                    controller.inventory[0] = collectables[i].gameObject.GetComponent<Item>();
+                }
+
+            for (int i = 0; i < collectables.Length; i++)
+                if (data.slot02 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                {
+                    controller.inventory[1] = collectables[i].gameObject.GetComponent<Item>();
+                }
+
+            for (int i = 0; i < collectables.Length; i++)
+                if (data.slot03 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                {
+                    controller.inventory[2] = collectables[i].gameObject.GetComponent<Item>();
+                }
+
+            file.Close();
         }
+
+       
     }
 
     float calculateHealth()
@@ -107,8 +155,17 @@ public class GameController : MonoBehaviour {
 {
     public float playerCurrentHealth;
     public float playerExperience;
-    public bool questActive, key, donut;
-    public List<Item> inventory = new List<Item>();
+    public bool questActive, key, donut, recipe, hasQuestItem;
+    public int slot01;
+    public int slot02;
+    public int slot03;
+    public int slot04;
+    public int slot05;
+    public int slot06;
+    public int slot07;
+    public int slot08;
+    public int slot09;
+    public int slot10;
 
 
 }

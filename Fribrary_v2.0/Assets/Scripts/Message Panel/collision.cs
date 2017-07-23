@@ -11,7 +11,7 @@ public class collision : MonoBehaviour {
     private UnityAction myYesAction, myNoAction, myOkayAction;            //set up the actions
 
     public GameObject salsaRecipe;
-    Vector2 recipeSpawn = new Vector2(2, 6);
+    
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class collision : MonoBehaviour {
 
     public void activteQuestItem()
     {
-        Instantiate(salsaRecipe, recipeSpawn, Quaternion.identity);
+        salsaRecipe.SetActive(true);
     }
 
 
