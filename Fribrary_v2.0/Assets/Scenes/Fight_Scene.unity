@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 50
   maxHealth: 100
-  damageTaken: 101
+  damageTaken: 51
   dead: 0
   healthbar: {fileID: 361298630}
 --- !u!114 &230401413
@@ -3426,6 +3426,7 @@ MonoBehaviour:
   enemyFire: {fileID: 230401413}
   playerFire: {fileID: 1459797829}
   attackbutton: {fileID: 1852515791}
+  collectables: []
   player: {fileID: 1459797826}
   enemy: {fileID: 230401408}
 --- !u!114 &275621554
@@ -6850,11 +6851,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114683714690853158, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
-        type: 2}
-      propertyPath: inventory.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4065105482882662, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.6471308
@@ -6886,21 +6882,6 @@ Prefab:
     - target: {fileID: 4065105482882662, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683714690853158, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
-        type: 2}
-      propertyPath: playerCurrentHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683714690853158, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
-        type: 2}
-      propertyPath: playerMaxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683714690853158, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
-        type: 2}
-      propertyPath: donut
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114683714690853158, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
         type: 2}
@@ -6950,26 +6931,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2098709321 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1127493607727952, guid: c0e27ca5e5949c1459fe4b061ce8cad1,
-    type: 2}
-  m_PrefabInternal: {fileID: 2098709320}
---- !u!114 &2098709322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2098709321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c20f4012b0d634db7f3bb9edb33ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyIcon: {fileID: 21300000, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
-  emptyIcon: {fileID: 21300030, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
-  keyTexture: {fileID: 2800000, guid: 31642a2dbf15a104d9df4296e23edff4, type: 3}
-  emptyTexture: {fileID: 2800000, guid: b83e54e49f8353d47bd0e289c3b10a26, type: 3}
 --- !u!1 &2102223307
 GameObject:
   m_ObjectHideFlags: 0

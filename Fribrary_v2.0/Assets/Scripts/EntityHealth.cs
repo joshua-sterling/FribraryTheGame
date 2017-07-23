@@ -53,6 +53,8 @@ public class EntityHealth : MonoBehaviour {
   
     public void TakeDamage()
     {
+        if(gameObject.tag == "Player")
+        { GameController.controller.playerCurrentHealth -= damageTaken; }
         Debug.Log("Take damage called");
         currentHealth -= damageTaken;
         if(currentHealth < 0)

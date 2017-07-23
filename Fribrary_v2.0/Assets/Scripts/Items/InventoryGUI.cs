@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryGUI : MonoBehaviour {
 
@@ -27,11 +28,14 @@ public class InventoryGUI : MonoBehaviour {
     //set up the inventory window
     private void OnGUI()
     {
-        showInventoryWindow = GUI.Toggle(new Rect(1600, 50, 100, 50), showInventoryWindow, "Inventory");
+        if (SceneManager.GetActiveScene().buildIndex != 0)                          //don't show inventory toggle on Load scene
+        { showInventoryWindow = GUI.Toggle(new Rect(1600, 50, 100, 50), 
+            showInventoryWindow, "Inventory"); }
 
         if(showInventoryWindow)
         {
-            inventoryWindowRect = GUI.Window(0, inventoryWindowRect, InventoryWindow, "Inventory");
+            inventoryWindowRect = GUI.Window(0, inventoryWindowRect, 
+                InventoryWindow, "Inventory");
         }
     }
 

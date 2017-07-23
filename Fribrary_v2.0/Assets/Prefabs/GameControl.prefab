@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4065105482882662}
   - component: {fileID: 114683714690853158}
+  - component: {fileID: 114132713160812838}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114132713160812838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127493607727952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c20f4012b0d634db7f3bb9edb33ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyIcon: {fileID: 21300000, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
+  emptyIcon: {fileID: 21300030, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
+  keyTexture: {fileID: 2800000, guid: 31642a2dbf15a104d9df4296e23edff4, type: 3}
+  emptyTexture: {fileID: 2800000, guid: b83e54e49f8353d47bd0e289c3b10a26, type: 3}
 --- !u!114 &114683714690853158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,5 +67,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b46bce3285660140b2f63989c109fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
+  playerCurrentHealth: 100
+  playerMaxHealth: 100
   playerExperience: 0
+  playerLocation: {x: 0, y: 0}
+  playerPlaceHolder: {fileID: 114276675793335780, guid: 67481cf460fa02747858f98509494a98,
+    type: 2}
+  questActive: 0
+  messagePanelActive: 0
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  robotsSpawned: 0
+  donut: 0
+  key: 0
