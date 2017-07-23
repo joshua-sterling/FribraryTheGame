@@ -7,38 +7,39 @@ using UnityEngine.SceneManagement;
 
 public class EntityHealth : MonoBehaviour {
 
-    public float currentHealth;
-    public float maxHealth;
-    public float damageTaken;           //for testing
-    public bool dead = false;
+    public float currentHealth;                                                 //entity current health
+    public float maxHealth;                                                     //entity max health
+    public float damageTaken;                                                   //how much damage should the entity take -
+                                                                                //ultimately this will be determined by what damages them but for now is a public variable
+    public bool dead = false;                                                   //is the entity dead
     
 
-    public Slider healthbar;
+    public Slider healthbar;                                                    //assign a slider to control for health
 
-    private ModalPanel modalPanel;
-
-    private UnityAction myYesAction, myNoAction, myOkayAction;            //set up the actions
+    private ModalPanel modalPanel;                                              //assign an instance of modalpanel to display messages
+        
+    private UnityAction myYesAction, myNoAction, myOkayAction;                  //set up the actions to send to modal panel
 
     private void Awake()
     {
         modalPanel = ModalPanel.Instance();
 
-        myOkayAction = new UnityAction(OkayFunction);                 //these actions get passed to the button call 
+        myOkayAction = new UnityAction(OkayFunction);                           //these actions get passed to the button call 
     }
 
     // Use this for initialization
     void Start () {
-        if (gameObject.tag == "Player")
+        if (gameObject.tag == "Player")                                         //on start, get the health settings for the player from the gamecontroller
         { currentHealth = GameController.controller.playerCurrentHealth;
             maxHealth = GameController.controller.playerMaxHealth;
 
         }
         else
         {
-            currentHealth = maxHealth;
+            currentHealth = maxHealth;                                          //for non-player entities, get health from the object this script is attached to
         }
 
-        healthbar.value = calculateHealth();
+        healthbar.value = calculateHealth();                                    //calculate the health
 	}
 	
 	// Update is called once per frame
@@ -48,12 +49,12 @@ public class EntityHealth : MonoBehaviour {
     
     float calculateHealth()
     {
-        return currentHealth / maxHealth;
+        return currentHealth / maxHealth;                                       //for the slider bar, health needs to be a %, so divide current by max
     }
   
-    public void TakeDamage()
+    public void TakeDamage()                                                    //entity is damaged, reduce health
     {
-        if(gameObject.tag == "Player")
+        if(gameObject.tag == "Player")                                          //if this is the player
         { GameController.controller.playerCurrentHealth -= damageTaken; }
         Debug.Log("Take damage called");
         currentHealth -= damageTaken;
