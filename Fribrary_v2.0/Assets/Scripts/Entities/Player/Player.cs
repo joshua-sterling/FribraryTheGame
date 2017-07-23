@@ -85,7 +85,7 @@ public class Player : Entity {
             }
         }
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -95,9 +95,10 @@ public class Player : Entity {
     public void Die() { print("Well, crap."); }
       
 
-    float calculateHealth()
+    public float calculateHealth()
     {
-        return currentHealth / maxHealth;
+        float health = currentHealth / maxHealth;
+        return health;
     }
 
 

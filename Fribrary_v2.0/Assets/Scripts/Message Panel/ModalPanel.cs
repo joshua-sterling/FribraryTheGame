@@ -75,7 +75,7 @@ public class ModalPanel : MonoBehaviour {
         this.question.text = question;                          //set the text to be displayed
         this.iconImage.sprite = iconImage;
 
-        this.iconImage.gameObject.SetActive(true);        //no background image yet
+        this.iconImage.gameObject.SetActive(true);        //has a background image
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);
         okayButton.gameObject.SetActive(true);
@@ -97,7 +97,7 @@ public class ModalPanel : MonoBehaviour {
                
         this.question.text = question;                          //set the text to be displayed
 
-        this.iconImage.gameObject.SetActive(false);        //no background image yet
+        this.iconImage.gameObject.SetActive(false);        //no background image 
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);
         okayButton.gameObject.SetActive(false);
@@ -116,7 +116,7 @@ public class ModalPanel : MonoBehaviour {
 
         this.question.text = question;                          //set the text to be displayed
 
-        this.iconImage.gameObject.SetActive(false);        //no background image yet
+        this.iconImage.gameObject.SetActive(false);        //no background image 
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
         okayButton.gameObject.SetActive(true);

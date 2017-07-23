@@ -215,12 +215,7 @@ MonoBehaviour:
   speed: 5
   health: 100
   direction: 0
-  down: {fileID: 21300030, guid: cbd434e2fc159af44b5268360eaefb0a, type: 3}
-  up: {fileID: 21300028, guid: cbd434e2fc159af44b5268360eaefb0a, type: 3}
-  right: {fileID: 21300026, guid: cbd434e2fc159af44b5268360eaefb0a, type: 3}
-  left: {fileID: 21300024, guid: cbd434e2fc159af44b5268360eaefb0a, type: 3}
-  spriteParent: {fileID: 212282661144271514}
-  inventory: []
+  healthbar: {fileID: 0}
 --- !u!114 &114695468985996184
 MonoBehaviour:
   m_ObjectHideFlags: 1
