@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class ProjectileCollision : MonoBehaviour {
 
-    private GameObject currentCollision;
+    private GameObject currentCollision;                            //used to track which gameobject has been collided with
     
    
 
-    public  GameObject explosion;
-    
-    
+    public  GameObject explosion;                                   //explostion animation
   
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if ((collision.gameObject.tag == "Projectile" && this.gameObject.tag == "Enemy")||(collision.gameObject.tag == "EnemyProjectile" && this.gameObject.tag == "Player"))
+        if ((collision.gameObject.tag == "Projectile" &&                                        //if a player projectile hits an enemy or if an enemy projectile hits the player
+            this.gameObject.tag == "Enemy")||(collision.gameObject.tag ==                       //prevents the player projectile from hitting the player and vice versa with enemy
+            "EnemyProjectile" && this.gameObject.tag == "Player"))
         {
-            this.gameObject.GetComponent<EntityHealth>().TakeDamage();
+            this.gameObject.GetComponent<EntityHealth>().TakeDamage();                                              //have the collided entity object take damage
             Debug.Log("You just got fireballed");
             Destroy(collision.gameObject);
-            GameObject explode = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
+            GameObject explode = (GameObject)Instantiate(explosion,                             //call explosion animation
+                transform.position, Quaternion.identity);
             
         }
         else

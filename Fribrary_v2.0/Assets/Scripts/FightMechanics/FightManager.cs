@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour {
 
-    public static FightManager fm;
+    public static FightManager fm;                                                  //singleton fightmanager instance
 
-    public FireProjectile enemyFire;
-    public FireProjectile playerFire;
-    public Button attackbutton;
-    public GameObject[] collectables;
+    public FireProjectile enemyFire;                                                //public variable to determine what projectile will be fired by enemy
+    public FireProjectile playerFire;                                               //public variable to determine what projectile will be fired by player
+    public Button attackbutton;                                                     //button used by player to attack
+    public GameObject[] collectables;                                               //array of gameobjects 
 
     public GameObject player, enemy;
 
@@ -24,10 +24,10 @@ public class FightManager : MonoBehaviour {
         playerTurn = true;
         attackbutton.interactable = true;
 
-        collectables = GameObject.FindGameObjectsWithTag("Collectable");
+        collectables = GameObject.FindGameObjectsWithTag("Collectable");            //create an array of every active collectable object
         foreach(GameObject coll in collectables)
         {
-            coll.SetActive(false);
+            coll.SetActive(false);                                                  //set them all inactive as they do not need to show on the fightscene
         }
 
 
@@ -38,22 +38,22 @@ public class FightManager : MonoBehaviour {
 		
         if(enemyTurn)
         {            
-            enemyAttack();
+            enemyAttack();                                                          //call the enemy attack function
         }
 
 	}
 
     public void enemyAttack()
     {
-        if (enemyTurn && !enemy.gameObject.GetComponent<EntityHealth>().dead)
+        if (enemyTurn && !enemy.gameObject.GetComponent<EntityHealth>().dead)       //see if it is the enemy's turn and if they are still alive
         {
             Debug.Log("Unity thinks the enemy is dead?");
             Debug.Log(enemy.gameObject.GetComponent<EntityHealth>().dead);
             enemyTurn = false;
            
-            StartCoroutine(Waiting());
+            StartCoroutine(Waiting());                                              //call the wait routine
 
-            playerTurn = true;
+            playerTurn = true;                                                      //enemy turn over, now player's turn
             
         }
        
@@ -63,10 +63,10 @@ public class FightManager : MonoBehaviour {
     {
         if (playerTurn)
         {
-            playerFire.shootProjectile();
+            playerFire.shootProjectile();                                           //fire the designated player projectile
            
-            playerTurn = false;           
-            enemyTurn = true;
+            playerTurn = false;                                                     //player turn over
+            enemyTurn = true;                                                       //now enemy turn
            
         }
     }
