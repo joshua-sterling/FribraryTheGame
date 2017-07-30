@@ -20,6 +20,6 @@ public class FightSceneButtons : MonoBehaviour {
 
     public void robotShoot()
     {
-        animator.SetTrigger("robotTrigger");
+       // animator.SetTrigger("robotTrigger");
     }
 }
