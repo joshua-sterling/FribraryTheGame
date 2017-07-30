@@ -5,6 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using UnityEngine.UI;
+using System.Security.Cryptography;
+using System.Text;
 
 /*This class will persist from scene to scene and will hold all of the data that is needed between scenes*/
 public class GameController : MonoBehaviour {
@@ -25,7 +27,7 @@ public class GameController : MonoBehaviour {
 
     public GameObject[] collectables;
 
-
+    MD5 md5Hash = MD5.Create();
 
     //creates an inventory instance for the player
     public List<Item> inventory = new List<Item>();
@@ -60,6 +62,9 @@ public class GameController : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath 
             + "/playerInfo.dat");                                                               //persistent data path for Unity data
 
+        FileStream chk = File.Create(Application.persistentDataPath
+             + "/check.dat");
+
         PlayerData data = new PlayerData();                                                     //create an instance of serializeable player data
         data.playerCurrentHealth = GameController.controller.playerCurrentHealth;                                         //capture player data
         data.playerExperience = playerExperience;
@@ -80,62 +85,93 @@ public class GameController : MonoBehaviour {
         data.slot08 = controller.inventory[7].itemID;
         data.slot09 = controller.inventory[8].itemID;
 
-       
+            
 
         bf.Serialize(file, data);                                                               //write the instance of serializeable data to file 
         Debug.Log("Data Saved!");
+
         file.Close();
 
+        string MD5checksum = GetFileChecksum(Application.persistentDataPath + "/playerInfo.dat", new MD5CryptoServiceProvider());
+
+        bf.Serialize(chk, MD5checksum);
+        Debug.Log("checksum " + MD5checksum);
       
+
+    }
+
+    public bool validateFile()
+    {
+        BinaryFormatter bf = new BinaryFormatter();                                         //create an instance of the binary formatter
+        FileStream file = File.Open(Application.persistentDataPath
+             + "/check.dat", FileMode.Open);                                             //open the saved file
+
+        string gameFileChecksum = GetFileChecksum(Application.persistentDataPath + "/playerInfo.dat", new MD5CryptoServiceProvider());
+
+        Debug.Log("Game File checksum is: " + gameFileChecksum);
+
+        string savedChecksum = (string)bf.Deserialize(file);
+
+        Debug.Log("Saved file checksum is: " + savedChecksum);
+
+        if (gameFileChecksum == savedChecksum) { return true; }
+        else { return false; }
+                
 
     }
 
     public void Load()
     {
-        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))                    //see if the game file even exists
+        if(validateFile())
         {
-            BinaryFormatter bf = new BinaryFormatter();                                         //create an instance of the binary formatter
-            FileStream file = File.Open(Application.persistentDataPath +
-                "/playerInfo.dat", FileMode.Open);                                             //open the saved file
-            PlayerData data = (PlayerData)bf.Deserialize(file);                                 //cast the deserialized file back to a PlayerData object
-            
-            GameController.controller.playerCurrentHealth = data.playerCurrentHealth;                                     //set game data equal to saved data
-            playerExperience = data.playerExperience;
-            questActive = data.questActive;
-            key = data.key;
-            donut = data.donut;
-            salsaRecipe = data.recipe;
-            playerPlaceHolder.calculateHealth();
-            hasQuestItem = data.hasQuestItem;     
-            Debug.Log("Data Loaded!");
+            if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))                    //see if the game file even exists
+            {
+                BinaryFormatter bf = new BinaryFormatter();                                         //create an instance of the binary formatter
+                FileStream file = File.Open(Application.persistentDataPath +
+                    "/playerInfo.dat", FileMode.Open);                                             //open the saved file
 
-            //find all potential collectables
-            collectables = GameObject.FindGameObjectsWithTag("Collectable");
-            
-            //bool slotFound = false;             //see if there is room in inventory
-                   
-            
-            for(int i = 0; i<collectables.Length;i++)
-            if(data.slot01 == collectables[i].gameObject.GetComponent<Item>().itemID)
-                {
-                    controller.inventory[0] = collectables[i].gameObject.GetComponent<Item>();
-                }
 
-            for (int i = 0; i < collectables.Length; i++)
-                if (data.slot02 == collectables[i].gameObject.GetComponent<Item>().itemID)
-                {
-                    controller.inventory[1] = collectables[i].gameObject.GetComponent<Item>();
-                }
+                PlayerData data = (PlayerData)bf.Deserialize(file);                                 //cast the deserialized file back to a PlayerData object
 
-            for (int i = 0; i < collectables.Length; i++)
-                if (data.slot03 == collectables[i].gameObject.GetComponent<Item>().itemID)
-                {
-                    controller.inventory[2] = collectables[i].gameObject.GetComponent<Item>();
-                }
+                GameController.controller.playerCurrentHealth = data.playerCurrentHealth;                                     //set game data equal to saved data
+                playerExperience = data.playerExperience;
+                questActive = data.questActive;
+                key = data.key;
+                donut = data.donut;
+                salsaRecipe = data.recipe;
+                playerPlaceHolder.calculateHealth();
+                hasQuestItem = data.hasQuestItem;
+                Debug.Log("Data Loaded!");
 
-            file.Close();
+                //find all potential collectables
+                collectables = GameObject.FindGameObjectsWithTag("Collectable");
+
+                //bool slotFound = false;             //see if there is room in inventory
+
+
+                for (int i = 0; i < collectables.Length; i++)
+                    if (data.slot01 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                    {
+                        controller.inventory[0] = collectables[i].gameObject.GetComponent<Item>();
+                    }
+
+                for (int i = 0; i < collectables.Length; i++)
+                    if (data.slot02 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                    {
+                        controller.inventory[1] = collectables[i].gameObject.GetComponent<Item>();
+                    }
+
+                for (int i = 0; i < collectables.Length; i++)
+                    if (data.slot03 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                    {
+                        controller.inventory[2] = collectables[i].gameObject.GetComponent<Item>();
+                    }
+
+                file.Close();
+            }
+            else { Debug.Log("No file found!"); }
         }
-
+        else{ Debug.Log("File is corrupted!  Cannot load."); }
        
     }
 
@@ -144,13 +180,66 @@ public class GameController : MonoBehaviour {
         return playerCurrentHealth / playerMaxHealth;
     }
 
+    private string GetFileChecksum(string file, HashAlgorithm algorithm)
+    {
+        string result = string.Empty;
+
+        using (FileStream fs = File.OpenRead(file))
+        {
+            result = BitConverter.ToString(algorithm.ComputeHash(fs)).ToLower().Replace("-", "");
+        }
+       
+        return result;
+    }
+
+    static string GetMd5Hash(MD5 md5Hash, string input)
+    {
+
+        // Convert the input string to a byte array and compute the hash.
+        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+        // Create a new Stringbuilder to collect the bytes
+        // and create a string.
+        StringBuilder sBuilder = new StringBuilder();
+
+        // Loop through each byte of the hashed data 
+        // and format each one as a hexadecimal string.
+        for (int i = 0; i < data.Length; i++)
+        {
+            sBuilder.Append(data[i].ToString("x2"));
+        }
+
+        // Return the hexadecimal string.
+        return sBuilder.ToString();
+    }
+
+    // Verify a hash against a string.
+    static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+    {
+        // Hash the input.
+        string hashOfInput = GetMd5Hash(md5Hash, input);
+
+        // Create a StringComparer an compare the hashes.
+        StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+        if (0 == comparer.Compare(hashOfInput, hash))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 }
 
 /*
  * class specifically for saving data
  * 
  */
- [Serializable()]
+[Serializable()]
  class PlayerData
 {
     public float playerCurrentHealth;
@@ -166,6 +255,6 @@ public class GameController : MonoBehaviour {
     public int slot08;
     public int slot09;
     public int slot10;
-
+   
 
 }
