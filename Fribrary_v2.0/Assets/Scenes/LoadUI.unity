@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 102488618}
   - component: {fileID: 102488617}
   - component: {fileID: 102488616}
+  - component: {fileID: 102488619}
   m_Layer: 5
   m_Name: LoadSavedGameButton
   m_TagString: Untagged
@@ -178,6 +179,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 102488619}
+        m_MethodName: LoadByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &102488617
@@ -213,6 +225,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 102488614}
+--- !u!114 &102488619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102488614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae686ff9970e6a4d9dc729c419e3626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &173943622 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114084930104761316, guid: 7f206eb8854ba1b41a04335e0bc62de8,
