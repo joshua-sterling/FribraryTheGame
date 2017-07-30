@@ -14,6 +14,8 @@ public class FightManager : MonoBehaviour {
 
     public GameObject player, enemy;
 
+    //instance of the animator for this object
+    public Animator animator;
 
     bool enemyTurn = false;                     //is it the enemy's turn
     bool playerTurn = false;
@@ -79,7 +81,11 @@ public class FightManager : MonoBehaviour {
         Debug.Log("Unity thinks the enemy is dead?");
         Debug.Log(enemy.gameObject.GetComponent<EntityHealth>().dead);
         if (!enemy.gameObject.GetComponent<EntityHealth>().dead)
-        { enemyFire.shootProjectile(); }                        //enemy attack
+        {
+            animator.SetTrigger("robotTrigger");
+            yield return new WaitForSecondsRealtime(1);
+            enemyFire.shootProjectile();
+        }                        //enemy attack
         yield return new WaitForSecondsRealtime(3);         //wait 3 seconds
         attackbutton.interactable = true;                   //enable attack button for player
     }
