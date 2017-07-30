@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ModalPanel : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class ModalPanel : MonoBehaviour {
     public Image iconImage;
     public Button yesButton, noButton, okayButton;
     public GameObject modalPanelObject;
+    public Slider playerHealth;                                 //use to control when health bar is shown so it does not appear on top of message box
    
 
     private static ModalPanel modalPanel;                       //keep a static reference to this modal panel
@@ -33,6 +35,8 @@ public class ModalPanel : MonoBehaviour {
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
         GameController.controller.messagePanelActive = true;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        { playerHealth.gameObject.SetActive(false); }
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -59,6 +63,8 @@ public class ModalPanel : MonoBehaviour {
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
         GameController.controller.messagePanelActive = true;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        { playerHealth.gameObject.SetActive(false); }
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -86,6 +92,8 @@ public class ModalPanel : MonoBehaviour {
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
         GameController.controller.messagePanelActive = true;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        { playerHealth.gameObject.SetActive(false); }
 
         yesButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         yesButton.onClick.AddListener(yesEvent);            //add listener for the Yes event that is passed in
@@ -108,7 +116,8 @@ public class ModalPanel : MonoBehaviour {
     {
         modalPanelObject.SetActive(true);                    //open the modal panel
         GameController.controller.messagePanelActive = true;
-
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        { playerHealth.gameObject.SetActive(false); }
 
         okayButton.onClick.RemoveAllListeners();             //if this button is listening, cancel it
         okayButton.onClick.AddListener(okayEvent);            //add listener for the No event that is passed in
@@ -128,6 +137,8 @@ public class ModalPanel : MonoBehaviour {
     {
         modalPanelObject.SetActive(false);          //close the modal panel window
         GameController.controller.messagePanelActive = false;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        { playerHealth.gameObject.SetActive(true); }
     }
 
 }

@@ -13,7 +13,7 @@ public class FireProjectile : MonoBehaviour {
     {
         {
             Debug.Log("Fire Projectile Called");
-            GameObject projectile = (GameObject)Instantiate(projectileToFire, transform.position, Quaternion.identity);            
+            GameObject projectile = (GameObject)Instantiate(projectileToFire, transform.position, transform.rotation);            
            
         }
     }
