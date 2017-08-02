@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
     public bool questActive = false;
     public bool hasQuestItem = false;
     public bool messagePanelActive = false;
+    public int npcMessageCount = 0;
 
     public Slider healthbar;
 

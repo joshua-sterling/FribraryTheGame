@@ -32,11 +32,31 @@ public class collision : MonoBehaviour {
             Debug.Log("Collision WITH NPC");
             if (GameController.controller.questActive)                  //if player is already on quest, don't offer it again
             {
-                modalPanel.Choice("We can't waste any more time - go get that salsa recipe!", myOkayAction);
+                if (!GameController.controller.hasQuestItem)
+                { modalPanel.Choice("We can't waste any more time - go get that salsa recipe!", myOkayAction); }
+                else
+                {
+                    switch (GameController.controller.npcMessageCount)
+                    {
+                        case 0:
+                            modalPanel.Choice("You got the recipe!  You should hold onto it for a while.  It could come in handy later.", myOkayAction);
+                            GameController.controller.npcMessageCount++;
+                            break;
+                        case 1:
+                            modalPanel.Choice("Yeah that's really all the content we have right now.  Try again later.", myOkayAction);
+                            GameController.controller.npcMessageCount++;
+                            break;
+                        case 2:
+                            modalPanel.Choice("Seriously, that's all there is to do right now.", myOkayAction);
+                            GameController.controller.npcMessageCount = 0;
+                            break;
+                    }
+
+                }
             }
             else
-            {
-                modalPanel.Choice("These are dark times for Fribrary - kitchen bots are going wild.  Will you get me the salsa recipe?", myYesAction, myNoAction);
+            {                
+                { modalPanel.Choice("These are dark times for Fribrary - kitchen bots are going wild.  Will you get me the salsa recipe?", myYesAction, myNoAction); }             
             }
         }
     }
