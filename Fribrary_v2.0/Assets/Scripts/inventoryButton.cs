@@ -7,7 +7,7 @@ public class inventoryButton : MonoBehaviour {
 
     public int buttonID;
     public Text toolTipBox;
-
+   
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<Image>().sprite = GameController.controller.inventory[buttonID].itemSprite;
@@ -40,4 +40,6 @@ public class inventoryButton : MonoBehaviour {
     {
         toolTipBox.text = null;
     }
+
+   
 }

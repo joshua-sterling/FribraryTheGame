@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
     public Slider healthbar;
 
     public GameObject[] collectables;
+    //public GameObject inventoryWindow;
 
     MD5 md5Hash = MD5.Create();
 
@@ -67,14 +68,15 @@ public class GameController : MonoBehaviour {
              + "/check.dat");
 
         PlayerData data = new PlayerData();                                                     //create an instance of serializeable player data
-        data.playerCurrentHealth = GameController.controller.playerCurrentHealth;                                         //capture player data
-        data.playerExperience = playerExperience;
-        data.questActive = questActive;
-        data.key = key;
-        data.donut = donut;
-        data.recipe = salsaRecipe;
-        data.hasQuestItem = hasQuestItem;
-
+        data.playerCurrentHealth = controller.playerCurrentHealth;                                         //capture player data
+        data.playerExperience = controller.playerExperience;
+        data.questActive = controller.questActive;
+        data.key = controller.key;
+        data.donut = controller.donut;
+        data.recipe = controller.salsaRecipe;
+        data.hasQuestItem = controller.hasQuestItem;
+        Debug.Log("key value saved is " + data.key);
+        Debug.Log("key value saved is " + data.key);
         /*inventory*/
         data.slot01 = controller.inventory[0].itemID;
         data.slot02 = controller.inventory[1].itemID;
@@ -135,13 +137,13 @@ public class GameController : MonoBehaviour {
                 PlayerData data = (PlayerData)bf.Deserialize(file);                                 //cast the deserialized file back to a PlayerData object
 
                 GameController.controller.playerCurrentHealth = data.playerCurrentHealth;                                     //set game data equal to saved data
-                playerExperience = data.playerExperience;
-                questActive = data.questActive;
-                key = data.key;
-                donut = data.donut;
-                salsaRecipe = data.recipe;
+                controller.playerExperience = data.playerExperience;
+                controller.questActive = data.questActive;
+                controller.key = data.key;
+                controller.donut = data.donut;
+                controller.salsaRecipe = data.recipe;
                 playerPlaceHolder.calculateHealth();
-                hasQuestItem = data.hasQuestItem;
+                controller.hasQuestItem = data.hasQuestItem;
                 Debug.Log("Data Loaded!");
 
                 //find all potential collectables
@@ -233,8 +235,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
-
+   
 }
+
+
 
 /*
  * class specifically for saving data
