@@ -99,7 +99,7 @@ MonoBehaviour:
   itemID: 0
   itemName: EMPTY SLOT
   itemIcon: {fileID: 2800000, guid: b83e54e49f8353d47bd0e289c3b10a26, type: 3}
-  itemDescription: TEST PLEASE WORK
+  itemDescription: Empty slot
   itemSprite: {fileID: 21300030, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
   itemObject: {fileID: 0}
 --- !u!212 &212567759066947484
