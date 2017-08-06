@@ -46,8 +46,8 @@ public class Level : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
 
     void LoadLevel()
     {
@@ -110,6 +110,7 @@ public class Level : MonoBehaviour {
         if(GameController.controller.salsaRecipe)
         {
             recipeObject.SetActive(true);
+            recipeObject.transform.position = new Vector2(2, 6);
             Debug.Log("Recipe is active");           
         }
         else

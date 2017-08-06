@@ -84,6 +84,7 @@ public class collision : MonoBehaviour {
     public void activteQuestItem()
     {
         salsaRecipe.SetActive(true);
+        GameController.controller.salsaRecipe = true;
     }
 
 

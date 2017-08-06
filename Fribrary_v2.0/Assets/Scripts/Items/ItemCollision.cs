@@ -33,8 +33,7 @@ public class ItemCollision : MonoBehaviour {
                 GameController.controller.salsaRecipe = false;
                 GameController.controller.hasQuestItem = true;
             }
-            //**************************************TESTING
-            //GameController.controller.inventory[5] = other.gameObject.GetComponent<Item>().Clone();
+            
         }
         else if(other.gameObject.tag == "Enemy")
         {
@@ -54,7 +53,7 @@ public class ItemCollision : MonoBehaviour {
             //while(!slotFound && invCounter < gameObject.GetComponent<Player>().inventory.Count)
             while (!slotFound && invCounter < GameController.controller.inventory.Count)
             {
-                //if (gameObject.GetComponent<Player>().inventory[invCounter].itemID == 0)    //look for item ID 0, which is empty spot
+                
                 if (GameController.controller.inventory[invCounter].itemID == 0)
                 {
                     GameController.controller.inventory[invCounter] =                   //put object in inventory
