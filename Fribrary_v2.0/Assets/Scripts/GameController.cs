@@ -12,6 +12,7 @@ using System.Text;
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
+    public string playerName = "";
 
     public float playerCurrentHealth;
     public float playerMaxHealth;
@@ -75,6 +76,7 @@ public class GameController : MonoBehaviour {
         data.donut = controller.donut;
         data.recipe = controller.salsaRecipe;
         data.hasQuestItem = controller.hasQuestItem;
+        data.playerName = controller.playerName;
         Debug.Log("key value saved is " + data.key);
         Debug.Log("key value saved is " + data.key);
         /*inventory*/
@@ -143,6 +145,7 @@ public class GameController : MonoBehaviour {
                 controller.donut = data.donut;
                 controller.salsaRecipe = data.recipe;
                 playerPlaceHolder.calculateHealth();
+                controller.playerName = data.playerName;
                 controller.hasQuestItem = data.hasQuestItem;
                 Debug.Log("Data Loaded!");
 
@@ -260,6 +263,7 @@ public class GameController : MonoBehaviour {
     public int slot08;
     public int slot09;
     public int slot10;
+    public string playerName;
    
 
 }
