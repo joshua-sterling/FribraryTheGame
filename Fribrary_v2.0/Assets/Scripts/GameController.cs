@@ -8,48 +8,44 @@ using UnityEngine.UI;
 using System.Security.Cryptography;
 using System.Text;
 
-/*This class will persist from scene to scene and will hold all of the data that is needed between scenes*/
+/*This class will persist from scene to scene and 
+ * will hold all of the data that is needed between scenes
+ * It will also manage game saves and loads */
 public class GameController : MonoBehaviour {
 
-    public static GameController controller;
-    public string playerName = "";
+    public static GameController controller;                                                //creates a singleton instance that will persist through each scene
+    public string playerName = "";                                                          //holds player name 
 
-    public float playerCurrentHealth;
-    public float playerMaxHealth;
-    public float playerExperience;
-    public Vector2 playerLocation;
+    public float playerCurrentHealth;                                                       //players current health
+    public float playerMaxHealth;                                                           //players maximum health
+    public float playerExperience;                                                          //player experience points
+    public Vector2 playerLocation;                                                          //used to keep track of players location when switching scenes
 
-    public Player playerPlaceHolder;
-    public bool questActive = false;
-    public bool hasQuestItem = false;
-    public bool messagePanelActive = false;
-    public int npcMessageCount = 0;
+    public Player playerPlaceHolder;                                                        //a game object assigned in editor to represent the player object
+    public bool questActive = false;                                                        //does the player have an active quest
+    public bool hasQuestItem = false;                                                       //does the player currently have the quest item
+    public bool messagePanelActive = false;                                                 //is the modal message panel active
+    public int npcMessageCount = 0;                                                         //a count to remember how many messages the npc has displayed
 
-    public Slider healthbar;
+    
+    public GameObject[] collectables;                                                       //array of collectable game objects 
+     
+    public List<Item> inventory = new List<Item>();                                         //creates an inventory instance for the player
+    
+    public int robotsSpawned = 0;                                                           //keep track of how many robots have been spawned
 
-    public GameObject[] collectables;
-    //public GameObject inventoryWindow;
-
-    MD5 md5Hash = MD5.Create();
-
-    //creates an inventory instance for the player
-    public List<Item> inventory = new List<Item>();
-    //public List<ItemTemplate> inventoryTemplate = new List<ItemTemplate>();
-
-    public int robotsSpawned = 0;
-
-    public bool donut = false,
-        key = false, salsaRecipe = false;
+    public bool donut = false,                                                              //used to determine if given collectable needs to be displayed
+        key = false, salsaRecipe = false;                                                   //used when changing scenes
 
 
     // Use this for initialization
-    void Awake () {                                 //Awake happens before Start happens
-        if (controller == null)                     //if there is no controller
+    void Awake () {                                                                          //Awake happens before Start happens
+        if (controller == null)                                                              //if there is no controller
         {
-            DontDestroyOnLoad(gameObject);          //set this as the controller
+            DontDestroyOnLoad(gameObject);                                                   //set this as the controller
             controller = this;
         }
-        else if(controller != this)                 //if there is a controller already and this is not it, destroy this
+        else if(controller != this)                                                         //if there is a controller already and this is not it, destroy this
         {
             Destroy(gameObject);
         }
@@ -62,14 +58,18 @@ public class GameController : MonoBehaviour {
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();                                             //will save as binary
-        FileStream file = File.Create(Application.persistentDataPath 
+        FileStream file = File.Create(Application.persistentDataPath                            //create a file to save player data
             + "/playerInfo.dat");                                                               //persistent data path for Unity data
 
-        FileStream chk = File.Create(Application.persistentDataPath
+        FileStream chk = File.Create(Application.persistentDataPath                             //create a checksum file
              + "/check.dat");
 
-        PlayerData data = new PlayerData();                                                     //create an instance of serializeable player data
-        data.playerCurrentHealth = controller.playerCurrentHealth;                                         //capture player data
+        PlayerData data = new PlayerData();                                                     //create an instance of serializeable player data that can be written to file
+
+        /* Player data that needs to be saved to file
+         * data in serializeable data object is set to equal the corresponding
+         * data in the game controller singleton*/
+        data.playerCurrentHealth = controller.playerCurrentHealth;                             
         data.playerExperience = controller.playerExperience;
         data.questActive = controller.questActive;
         data.key = controller.key;
@@ -77,9 +77,8 @@ public class GameController : MonoBehaviour {
         data.recipe = controller.salsaRecipe;
         data.hasQuestItem = controller.hasQuestItem;
         data.playerName = controller.playerName;
-        Debug.Log("key value saved is " + data.key);
-        Debug.Log("key value saved is " + data.key);
-        /*inventory*/
+        
+        /*Also capture the ID of each item in player inventory*/
         data.slot01 = controller.inventory[0].itemID;
         data.slot02 = controller.inventory[1].itemID;
         data.slot03 = controller.inventory[2].itemID;
@@ -88,86 +87,86 @@ public class GameController : MonoBehaviour {
         data.slot06 = controller.inventory[5].itemID;
         data.slot07 = controller.inventory[6].itemID;
         data.slot08 = controller.inventory[7].itemID;
-        data.slot09 = controller.inventory[8].itemID;
-
-            
+        data.slot09 = controller.inventory[8].itemID;            
 
         bf.Serialize(file, data);                                                               //write the instance of serializeable data to file 
-        Debug.Log("Data Saved!");
+       
+        file.Close();                                                                           //finished with player data file, close it
 
-        file.Close();
+        string MD5checksum = GetFileChecksum(Application.persistentDataPath +                   //create a hash of the player file and save it to a string
+            "/playerInfo.dat", new MD5CryptoServiceProvider());
 
-        string MD5checksum = GetFileChecksum(Application.persistentDataPath + "/playerInfo.dat", new MD5CryptoServiceProvider());
+        bf.Serialize(chk, MD5checksum);                                                         //use the binary formatter to write the checksum to a separate file 
 
-        bf.Serialize(chk, MD5checksum);
-        Debug.Log("checksum " + MD5checksum);
-      
+        chk.Close();                                                                            //finished with the checksum file, close it      
 
     }
 
+    /*This function will get a hash of the player data file and compare it
+     * to the saved checksum from the last game save action and return bool */
     public bool validateFile()
     {
         BinaryFormatter bf = new BinaryFormatter();                                         //create an instance of the binary formatter
-        FileStream file = File.Open(Application.persistentDataPath
-             + "/check.dat", FileMode.Open);                                             //open the saved file
+        FileStream file = File.Open(Application.persistentDataPath                              
+             + "/check.dat", FileMode.Open);                                                //open the saved file containing the checksum
 
-        string gameFileChecksum = GetFileChecksum(Application.persistentDataPath + "/playerInfo.dat", new MD5CryptoServiceProvider());
+        string gameFileChecksum = GetFileChecksum(Application.persistentDataPath +          //get MD5 hash of the saved game file
+            "/playerInfo.dat", new MD5CryptoServiceProvider());
+      
+        string savedChecksum = (string)bf.Deserialize(file);                                //deserialize the saved checksum and assign it to a string
+           
 
-        Debug.Log("Game File checksum is: " + gameFileChecksum);
-
-        string savedChecksum = (string)bf.Deserialize(file);
-
-        Debug.Log("Saved file checksum is: " + savedChecksum);
-
-        if (gameFileChecksum == savedChecksum) { return true; }
-        else { return false; }
+        if (gameFileChecksum == savedChecksum) { return true; }                             //compare the saved checksum to that of the saved file - return true if they match
+        else { return false; }                                                              //return false if they do not match 
                 
 
     }
 
+
+    /*This function will load a saved game file and validate the saved data*/
     public void Load()
     {
-        if(validateFile())
+        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))                    //see if the game file even exists
         {
-            if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))                    //see if the game file even exists
+            if (validateFile())                                                                       //first call the checksum validation - only proceed if it validates
+                
             {
                 BinaryFormatter bf = new BinaryFormatter();                                         //create an instance of the binary formatter
                 FileStream file = File.Open(Application.persistentDataPath +
-                    "/playerInfo.dat", FileMode.Open);                                             //open the saved file
+                    "/playerInfo.dat", FileMode.Open);                                             //open the saved file of player data
 
 
                 PlayerData data = (PlayerData)bf.Deserialize(file);                                 //cast the deserialized file back to a PlayerData object
 
-                GameController.controller.playerCurrentHealth = data.playerCurrentHealth;                                     //set game data equal to saved data
+                controller.playerCurrentHealth = data.playerCurrentHealth;                              //set game data equal to saved data
                 controller.playerExperience = data.playerExperience;
                 controller.questActive = data.questActive;
                 controller.key = data.key;
                 controller.donut = data.donut;
                 controller.salsaRecipe = data.recipe;
-                playerPlaceHolder.calculateHealth();
+                playerPlaceHolder.calculateHealth();                                                  //set the health on the player object
                 controller.playerName = data.playerName;
                 controller.hasQuestItem = data.hasQuestItem;
-                Debug.Log("Data Loaded!");
+                
 
-                //find all potential collectables
-                collectables = GameObject.FindGameObjectsWithTag("Collectable");
-
-                //bool slotFound = false;             //see if there is room in inventory
-
-
-                for (int i = 0; i < collectables.Length; i++)
+                //find all potential collectables and store them in an array
+                collectables = GameObject.FindGameObjectsWithTag("Collectable");                    /*call gameobject member function (a Unity built in function) to find all game objects
+                                                                                                    *with game object tag */
+                
+                //Load teh inventory
+                for (int i = 0; i < collectables.Length; i++)                                                       //slot 1 - see what item should be there
                     if (data.slot01 == collectables[i].gameObject.GetComponent<Item>().itemID)
                     {
                         controller.inventory[0] = collectables[i].gameObject.GetComponent<Item>();
                     }
 
                 for (int i = 0; i < collectables.Length; i++)
-                    if (data.slot02 == collectables[i].gameObject.GetComponent<Item>().itemID)
+                    if (data.slot02 == collectables[i].gameObject.GetComponent<Item>().itemID)                       //slot 2 - see what item should be there
                     {
                         controller.inventory[1] = collectables[i].gameObject.GetComponent<Item>();
                     }
 
-                for (int i = 0; i < collectables.Length; i++)
+                for (int i = 0; i < collectables.Length; i++)                                                       //slot 3 - see what item should be there
                     if (data.slot03 == collectables[i].gameObject.GetComponent<Item>().itemID)
                     {
                         controller.inventory[2] = collectables[i].gameObject.GetComponent<Item>();
@@ -175,68 +174,33 @@ public class GameController : MonoBehaviour {
 
                 file.Close();
             }
-            else { Debug.Log("No file found!"); }
+            else { Debug.Log("File is corrupted!  Cannot load."); }                                                 //checksum validation failed - do not load - must start new game
         }
-        else{ Debug.Log("File is corrupted!  Cannot load."); }
+        else{ Debug.Log("No file found!"); }                                                                        //no file available to load - must start new game
        
     }
 
+    /*This function will calculate health to be assigned to the player object*/
     float calculateHealth()
     {
         return playerCurrentHealth / playerMaxHealth;
     }
 
+
+    /*This function is passed a string file path and a hash algorithm
+     * and will return a string with a hash value*/
     private string GetFileChecksum(string file, HashAlgorithm algorithm)
     {
         string result = string.Empty;
 
         using (FileStream fs = File.OpenRead(file))
         {
-            result = BitConverter.ToString(algorithm.ComputeHash(fs)).ToLower().Replace("-", "");
+            result = BitConverter.ToString(algorithm.ComputeHash(fs)).ToLower().Replace("-", "");               //manipulate string to lower, remove dashes
         }
        
         return result;
     }
-
-    static string GetMd5Hash(MD5 md5Hash, string input)
-    {
-
-        // Convert the input string to a byte array and compute the hash.
-        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-        // Create a new Stringbuilder to collect the bytes
-        // and create a string.
-        StringBuilder sBuilder = new StringBuilder();
-
-        // Loop through each byte of the hashed data 
-        // and format each one as a hexadecimal string.
-        for (int i = 0; i < data.Length; i++)
-        {
-            sBuilder.Append(data[i].ToString("x2"));
-        }
-
-        // Return the hexadecimal string.
-        return sBuilder.ToString();
-    }
-
-    // Verify a hash against a string.
-    static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
-    {
-        // Hash the input.
-        string hashOfInput = GetMd5Hash(md5Hash, input);
-
-        // Create a StringComparer an compare the hashes.
-        StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-
-        if (0 == comparer.Compare(hashOfInput, hash))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+      
 
    
 }
@@ -244,12 +208,13 @@ public class GameController : MonoBehaviour {
 
 
 /*
- * class specifically for saving data
+ * class specifically for saving serialized player data
  * 
  */
 [Serializable()]
  class PlayerData
 {
+    //Player data to be saved to file
     public float playerCurrentHealth;
     public float playerExperience;
     public bool questActive, key, donut, recipe, hasQuestItem;
@@ -262,7 +227,6 @@ public class GameController : MonoBehaviour {
     public int slot07;
     public int slot08;
     public int slot09;
-    public int slot10;
     public string playerName;
    
 

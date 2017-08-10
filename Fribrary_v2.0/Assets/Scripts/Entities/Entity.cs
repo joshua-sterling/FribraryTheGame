@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour {
 
     //There will never be an instance of entity - other classes wiill inherit
-    public float speed;
+    public float speed;                                     //how fast this until will move
 
-    public int health;
+    public int health;                                      //health of the unit
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +20,9 @@ public abstract class Entity : MonoBehaviour {
 
     }
 
+    //this function will have the entity take damage 
     public void damageEntity(int amount)
     {
-        health -= amount;
+        health -= amount;                                   //reduce health by damage amount
     }
 }
