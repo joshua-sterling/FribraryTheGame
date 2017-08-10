@@ -11,7 +11,7 @@ public class FollowingMob : Entity {
 
 
     void Start () {
-        following = GameObject.FindGameObjectWithTag("Player"); 
+        following = GameObject.FindGameObjectWithTag("Player");                                             //set the target to follow to be teh player
     }
 	
 	// Update is called once per frame
@@ -39,13 +39,8 @@ public class FollowingMob : Entity {
             {
                 GetComponent<Rigidbody2D>().transform.position += Vector3.left * speed * Time.deltaTime;
             }
-        }
-        if (health <= 0)
-        {
-            Die();
-        }
+        }       
         
     }
-
-    public void Die() { }
+   
 }

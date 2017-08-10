@@ -899,6 +899,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114052441063577324, guid: 4e73ad623da82a248ad608ae1ec85a0d,
+        type: 2}
+      propertyPath: itemDescription
+      value: This donut looks delicious - forbiddenly delicious...
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e73ad623da82a248ad608ae1ec85a0d, type: 2}
   m_IsPrefabParent: 0
@@ -1693,6 +1698,11 @@ Prefab:
     - target: {fileID: 1127172032630696, guid: dd5a1ad6469aa8b48b83f0208da988c6, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114505372813174886, guid: dd5a1ad6469aa8b48b83f0208da988c6,
+        type: 2}
+      propertyPath: itemDescription
+      value: A fancy golden key.  I wonder what it unlocks?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd5a1ad6469aa8b48b83f0208da988c6, type: 2}

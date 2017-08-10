@@ -5,29 +5,29 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+
+/*The EntityHealth class is used in the fight scene to control
+ * what happens to an entity when they take damage 
+ * This class is assigned to Entity game objects in the editor*/
 public class EntityHealth : MonoBehaviour {
 
     public float currentHealth;                                                 //entity current health
     public float maxHealth;                                                     //entity max health
-    public float damageTaken;                                                   //how much damage should the entity take -
-                                                                                //ultimately this will be determined by what damages them but for now is a public variable
-    public bool dead = false;                                                   //is the entity dead
-    
+    public float damageTaken;                                                   //how much damage should the entity take                                                                                 
+    public bool dead = false;                                                   //is the entity dead    
 
     public Slider healthbar;                                                    //assign a slider to control for health
-
     private ModalPanel modalPanel;                                              //assign an instance of modalpanel to display messages
         
-    private UnityAction myYesAction, myNoAction, myOkayAction;                  //set up the actions to send to modal panel
+    private UnityAction myOkayAction;                                           //set up the action to send to modal panel
 
     private void Awake()
     {
-        modalPanel = ModalPanel.Instance();
-
-        myOkayAction = new UnityAction(OkayFunction);                           //these actions get passed to the button call 
+        modalPanel = ModalPanel.Instance();                                     //gets an instance of the modal panel
+        myOkayAction = new UnityAction(OkayFunction);                           //this action is passed to the modal panel
     }
 
-    // Use this for initialization
+    // Use this for initialization 
     void Start () {
         if (gameObject.tag == "Player")                                         //on start, get the health settings for the player from the gamecontroller
         { currentHealth = GameController.controller.playerCurrentHealth;
@@ -39,7 +39,7 @@ public class EntityHealth : MonoBehaviour {
             currentHealth = maxHealth;                                          //for non-player entities, get health from the object this script is attached to
         }
 
-        healthbar.value = calculateHealth();                                    //calculate the health
+        healthbar.value = calculateHealth();                                    //calculate the health to display on the slider
 	}
 	
 	// Update is called once per frame
@@ -52,38 +52,44 @@ public class EntityHealth : MonoBehaviour {
         return currentHealth / maxHealth;                                       //for the slider bar, health needs to be a %, so divide current by max
     }
   
+    /*This function is called during events that cause damage
+     * to the entity this script is assigned to */
     public void TakeDamage()                                                    //entity is damaged, reduce health
     {
         if(gameObject.tag == "Player")                                          //if this is the player
-        { GameController.controller.playerCurrentHealth -= damageTaken; }
-        Debug.Log("Take damage called");
-        currentHealth -= damageTaken;
+        { GameController.controller.playerCurrentHealth -= damageTaken; }       //update the health in the game controller
+        
+        currentHealth -= damageTaken;                                           //for all entity types, update the current health displayed
         if(currentHealth < 0)
         {
-            Die();
+            Die();                                                              //health is 0, entity has died
         }
 
-        healthbar.value = calculateHealth();
+        healthbar.value = calculateHealth();                                    //update the health bar slider
     }
 
+    /*This function handles when the entity is killed*/
     public void Die()
     {
-        currentHealth = 0;
-        if (gameObject.tag == "Player")
-        { Debug.Log("You died"); }
-        else if(gameObject.tag == "Enemy")
+        currentHealth = 0;                                                              //damage may have taken health negative, set it to 0
+        if (gameObject.tag == "Player")                                                 //if this entity is the player, call the modal panel with a message
+        {
+            modalPanel.Choice("You have died!", myOkayAction);                          //call modal panel to display a message
+            dead = true;                                                                //set dead to true
+            
+        }
+        else if(gameObject.tag == "Enemy")                                              //if the entity is tagged as an enemy, call the modal with a different message
         {
             modalPanel.Choice("The enemy has been destroyed!", myOkayAction);
             dead = true;
-            Debug.Log("Enemy should have died...");
+            
         }
     }
 
-    //set up some test functions - what will happen when the button gets pressed
+    //This function is called when the okay button is pressed in the modal panel
     void OkayFunction()
-    {
-        Debug.Log("The OKAY button got pressed after enemy destroyed");
-        SceneManager.LoadScene(1);
+    {       
+        SceneManager.LoadScene(1);                                              //change to scene 1, which is the main level
 
     }
 
