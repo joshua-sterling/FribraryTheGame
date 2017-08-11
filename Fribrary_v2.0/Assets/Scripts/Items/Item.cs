@@ -13,31 +13,20 @@ public class Item : MonoBehaviour
     public Sprite itemSprite;               //Sprite to be displayed
     public GameObject itemObject;           //game object to reference
 
-    private Item() { }
-
+    
     public void Start()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(transform.gameObject);                        //ensures these objects don't get destroyed between scenes
     }
 
     public Item(int id, string name, Texture2D icon, string desc)       //constructor
     {
-        itemID = id;
-        itemName = name;
-        itemIcon = icon;
-        itemDescription = desc;
+        itemID = id;                          //set ID
+        itemName = name;                      //set name
+        itemIcon = icon;                     //set icon
+        itemDescription = desc;                //set description
     }
 
-    /*TESTING
-    public void Copy()
-    {
-        Item copy = new Item();
-        copy.itemID = this.itemID;
-        copy.itemName = this.itemName;
-        copy.itemIcon = this.itemIcon;
-        copy.itemDescription = this.itemDescription;
-        copy.itemSprite = this.itemSprite;
-        copy.itemObject = this.itemObject;
-    }*/
+  
 
 }

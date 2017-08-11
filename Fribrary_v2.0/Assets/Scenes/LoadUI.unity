@@ -2923,6 +2923,42 @@ Prefab:
       propertyPath: inventory.Array.data[8]
       value: 
       objectReference: {fileID: 1761511741}
+    - target: {fileID: 1729490169465968, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660125322371376, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234239539351016, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716386134559988, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279924987690524, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1839858137586964, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268216979185772, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493820031163150, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319436069190186, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_IsPrefabParent: 0
@@ -2937,7 +2973,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1777864837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77c20f4012b0d634db7f3bb9edb33ff4, type: 3}
   m_Name: 
@@ -3092,7 +3128,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1099050829
+  randomSeed: 1904028709
   InitialModule:
     serializedVersion: 3
     enabled: 1

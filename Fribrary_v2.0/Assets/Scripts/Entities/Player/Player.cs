@@ -3,34 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/*The player class represents the player and inherits from Entity*/
 public class Player : Entity {
 
-    public int direction;
-    private float currentHealth, maxHealth;
+    
+    private float currentHealth, maxHealth;                                             //for tracking current health and maximum health
 
-    public Slider healthbar;
+    public Slider healthbar;                                                            //assign a slider in the editor to act as a healthbar
      
 
-    //these bools contorl parameters on the player animation transitions
-    bool walkLeft = false, walkRight = false, walkUp = false, walkDown = false, playerIdle = false;
+    //these bools control parameters on the player animation transitions
+    bool walkLeft = false, 
+        walkRight = false, 
+        walkUp = false, 
+        walkDown = false, 
+        playerIdle = false;
 
-    //public SpriteRenderer spriteParent;
-
-    //instance of the animator for this object
+   
+    //instance of the animator for this object - allows for control of the animations
     private Animator animator;   
 
-    //creates an inventory instance for the player
-  //  public List<Item> inventory = new List<Item>();
-    
+        
     // Use this for initialization
     void Start () {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();                                            //assign the animator for this game object
 
-        currentHealth = GameController.controller.playerCurrentHealth;
-        maxHealth = GameController.controller.playerMaxHealth;
+        currentHealth = GameController.controller.playerCurrentHealth;                  //get current health from the game controller singleton
+        maxHealth = GameController.controller.playerMaxHealth;                          //get the maximum health from the game controller
         
-        healthbar.value = calculateHealth();
+        healthbar.value = calculateHealth();                                            //set the healthbar value
     }
 	
 	// Update is called once per frame
@@ -43,11 +44,11 @@ public class Player : Entity {
 
         if(!walkRight && !walkDown && !walkUp && !walkLeft)         //if A,S,W,D not pressed call idle animation
         {
-            playerIdle = true;
+            playerIdle = true;                                      //player is not moving, run idle animation
         }
         else
         {
-            playerIdle = false;
+            playerIdle = false;                                     //player is moving, stop the idle animation
         }
         
         animator.SetBool("WalkDown", walkDown);                 //call animation parameters to trigger appropriate animation
@@ -56,48 +57,40 @@ public class Player : Entity {
         animator.SetBool("WalkLeft", walkLeft);
         animator.SetBool("PlayerIdle", playerIdle);
 
-        //Actual player movement on the screen
+        //Actual player movement on the screen - distance moved controlled by speed variable, which is inherited from Entity
         if (!GameController.controller.messagePanelActive)      //only allow movement when message panel is not active
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))                                                       //move player up
             {
-
                 GetComponent<Rigidbody2D>().transform.position += Vector3.up * speed * Time.deltaTime;
-
             }
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))                                                     //move player down
             {
-
                 GetComponent<Rigidbody2D>().transform.position += Vector3.down * speed * Time.deltaTime;
-
             }
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))                                                     //move player left
             {
-
                 GetComponent<Rigidbody2D>().transform.position += Vector3.left * speed * Time.deltaTime;
-
             }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))                                                    //move player right
             {
-
                 GetComponent<Rigidbody2D>().transform.position += Vector3.right * speed * Time.deltaTime;
-
             }
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0)             //see if the player died
         {
             Die();
         }
 
     }
 
-    public void Die() { print("Well, crap."); }
+    public void Die() { print("Well, crap."); }                     //In the prototype, the player cannot die on the main level
       
-
+    //calculate health for the slider, which needs health from 0 to 1.00
     public float calculateHealth()
     {
-        float health = currentHealth / maxHealth;
+        float health = currentHealth / maxHealth;                   //health is the percent of current divided by max
         return health;
     }
 
