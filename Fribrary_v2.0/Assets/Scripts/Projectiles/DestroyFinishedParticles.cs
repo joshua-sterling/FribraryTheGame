@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyFinishedParticles : MonoBehaviour {
 
-    private ParticleSystem ps;
+    private ParticleSystem ps;                              //variable representing the particle system
 
 	// Use this for initialization
 	void Start () {

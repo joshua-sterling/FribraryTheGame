@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Following Mob class creates an enemy that will follow the player around the level*/
 public class FollowingMob : Entity {
 
     private GameObject following;                //create an instance of entity that is being followed
