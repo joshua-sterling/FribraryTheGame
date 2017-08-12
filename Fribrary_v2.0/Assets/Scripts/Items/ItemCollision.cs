@@ -10,7 +10,7 @@ public class ItemCollision : MonoBehaviour {
 
     private bool display = false;                           //show the item in inventory
     private GameObject currentCollision;                    //what is the most recent object collided
-    private Item currentItem;                               //what is the most recent item collided
+   
 
     private void OnCollisionEnter2D(Collision2D other)
     {    
@@ -18,7 +18,7 @@ public class ItemCollision : MonoBehaviour {
         {
             display = true;                                                     //show it in inventory
             currentCollision = other.gameObject;                                //set the current collision object
-            currentItem = other.gameObject.GetComponent<Item>();                //set the current collision item
+           
             
             if(other.gameObject.GetComponent<Item>().itemID == 2)               //did player collide with item ID 2
             {

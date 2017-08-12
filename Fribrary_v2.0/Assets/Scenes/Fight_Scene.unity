@@ -709,7 +709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileToFire: {fileID: 1298957148552786, guid: 8a35e9927d0a3b14281f51383561ee5c,
     type: 2}
-  playerTurn: 1
   playercore: {fileID: 1584433376}
 --- !u!1 &231478015
 GameObject:
@@ -833,7 +832,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1550306128
+  randomSeed: -818291788
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6157,7 +6156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileToFire: {fileID: 1298957148552786, guid: 7c48b64c89f86a445a03b156b9d87988,
     type: 2}
-  playerTurn: 1
   playercore: {fileID: 808246079}
 --- !u!114 &1459797830
 MonoBehaviour:
@@ -6532,7 +6530,6 @@ GameObject:
   - component: {fileID: 1584433376}
   - component: {fileID: 1584433377}
   - component: {fileID: 1584433378}
-  - component: {fileID: 1584433379}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -6609,17 +6606,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &1584433379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1584433375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3776fb8d888b8a842a3267d25611691b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1616117913
 GameObject:
   m_ObjectHideFlags: 0
@@ -7033,7 +7019,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1584433379}
+      - m_Target: {fileID: 0}
         m_MethodName: robotShoot
         m_Mode: 1
         m_Arguments:
@@ -7793,7 +7779,9 @@ Prefab:
       propertyPath: inventory.Array.data[8]
       value: 
       objectReference: {fileID: 2098709321}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114132713160812838, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+    - {fileID: 114424968075340580, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &2098709321 stripped

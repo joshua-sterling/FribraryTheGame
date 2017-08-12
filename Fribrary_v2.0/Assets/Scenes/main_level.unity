@@ -216,21 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78ccd79ac417f542a61da4f6b5e212f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &184298251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 184298246}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c20f4012b0d634db7f3bb9edb33ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyIcon: {fileID: 21300000, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
-  emptyIcon: {fileID: 21300030, guid: cca1e527f4f794041bd0779c7c6dd2d9, type: 3}
-  keyTexture: {fileID: 0}
-  emptyTexture: {fileID: 0}
 --- !u!95 &184298252
 Animator:
   serializedVersion: 3
@@ -453,7 +438,9 @@ Prefab:
       propertyPath: inventoryWindow
       value: 
       objectReference: {fileID: 381134686}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114132713160812838, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
+    - {fileID: 114424968075340580, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c0e27ca5e5949c1459fe4b061ce8cad1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &717566059
