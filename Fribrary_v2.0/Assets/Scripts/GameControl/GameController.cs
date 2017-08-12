@@ -7,6 +7,7 @@ using System;
 using UnityEngine.UI;
 using System.Security.Cryptography;
 using System.Text;
+using UnityEditor;
 
 /*This class will persist from scene to scene and 
  * will hold all of the data that is needed between scenes
@@ -174,9 +175,11 @@ public class GameController : MonoBehaviour {
 
                 file.Close();
             }
-            else { Debug.Log("File is corrupted!  Cannot load."); }                                                 //checksum validation failed - do not load - must start new game
+            else {
+                EditorUtility.DisplayDialog("Game File Error!", "File is corrupted!  Cannot load.", "ok");        //checksum validation failed - do not load - must start new game
+            }                                                
         }
-        else{ Debug.Log("No file found!"); }                                                                        //no file available to load - must start new game
+        else{ EditorUtility.DisplayDialog("Game File Error!", "Game file not found!  Cannot load.", "ok"); }      //no file available to load - must start new game
        
     }
 
