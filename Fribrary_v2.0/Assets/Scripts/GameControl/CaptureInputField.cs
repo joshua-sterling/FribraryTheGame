@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class CaptureInputField : MonoBehaviour {
 
+    private ModalPanel modalPanel;                                          //modal panel that will be used to display messages
+    private UnityAction myOkayAction;                                 //set up the actions - yes, no and okay will be used
+
     public InputField usernameInput;                                    //identifies the input field where name will be entered
     Regex alphaRegex = new Regex("[a-zA-Z]");                           //regular expression that identifies characters that are allowed
+
+
+    public void Awake()
+    {
+        modalPanel = ModalPanel.Instance();                         //gets an instance of the modal panel
+        myOkayAction = new UnityAction(OkayFunction);               //assign the action for Okay
+    }
 
     public void validateUserName()
     {
@@ -22,9 +32,13 @@ public class CaptureInputField : MonoBehaviour {
         }
         else
         {
-            EditorUtility.DisplayDialog("Player Name Error!", "Player name can only contain letters!", "ok");
+            modalPanel.Choice("Player name can only contain letters!", myOkayAction);            
         }
         
     }
 
+    void OkayFunction()
+    {
+        //do nothing - closing the window is handled by modal panel class
+    }
 }
