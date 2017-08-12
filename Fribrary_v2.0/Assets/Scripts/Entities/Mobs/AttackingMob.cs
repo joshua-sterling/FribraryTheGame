@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/*This is a class of moving enemies that will be able to attack the player in the main level*/
+/*This is a class of moving enemies that will be able to attack the player in the main level*/ 
 public class AttackingMob : Entity {
 
     public GameObject attacking1;                   //used to ensure player object gets targeted
     public Entity attacking;                        //assign in the editor which entity this attackingmob will attack (should be player)
     public int distance;                            //how close to player should the entity get in order to attack
 
-    private bool canAttack;                         //can this entity currently attack
+   
 
 	// Use this for initialization
 	void Start () {
-        canAttack = true;                                                           //set attack to true
+        
         if(attacking1==null)                                                        //if attacking1 has not been assigned (or been lost between scenes)
         {
             attacking1 = GameObject.FindGameObjectWithTag("Player");                //find the player object and assign it to attacking1
@@ -66,9 +66,9 @@ public class AttackingMob : Entity {
 
     IEnumerator waitForAttack()                     //can only attack every 2 seconds
     {
-        canAttack = false;                          //disable attack
-        yield return new WaitForSeconds(2);         //in this function wait for 2 seconds
-        canAttack = true;                           //re-enable attack
+        
+        yield return new WaitForSeconds(2);         //in this function wait for 2 seconds 
+      
 
     }
 }

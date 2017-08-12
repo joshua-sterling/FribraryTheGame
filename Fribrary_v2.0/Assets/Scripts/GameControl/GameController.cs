@@ -4,15 +4,17 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
-using UnityEngine.UI;
 using System.Security.Cryptography;
-using System.Text;
-using UnityEditor;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
-/*This class will persist from scene to scene and 
+/*This class will persist  from scene to scene and 
  * will hold all of the data that is needed between scenes
  * It will also manage game saves and loads */
 public class GameController : MonoBehaviour {
+
+    private ModalPanel modalPanel;                                          //modal panel that will be used to display messages
+    private UnityAction myOkayAction;                                 //set up the actions - yes, no and okay will be used
 
     public static GameController controller;                                                //creates a singleton instance that will persist through each scene
     public string playerName = "";                                                          //holds player name 
@@ -50,8 +52,9 @@ public class GameController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-	}
+        modalPanel = ModalPanel.Instance();                         //gets an instance of the modal panel
+        myOkayAction = new UnityAction(OkayFunction);               //assign the action for Okay
+    }
 
     /* 
      * Saves game data out to a file in binary format
@@ -174,12 +177,13 @@ public class GameController : MonoBehaviour {
                     }
 
                 file.Close();
+                SceneManager.LoadScene(1);
             }
             else {
-                EditorUtility.DisplayDialog("Game File Error!", "File is corrupted!  Cannot load.", "ok");        //checksum validation failed - do not load - must start new game
+                modalPanel.Choice("Saved game file is corrupted!", myOkayAction);        //checksum validation failed - do not load - must start new game
             }                                                
         }
-        else{ EditorUtility.DisplayDialog("Game File Error!", "Game file not found!  Cannot load.", "ok"); }      //no file available to load - must start new game
+        else{ modalPanel.Choice("Saved game file not found!", myOkayAction); }      //no file available to load - must start new game
        
     }
 
@@ -203,9 +207,13 @@ public class GameController : MonoBehaviour {
        
         return result;
     }
-      
 
-   
+    void OkayFunction()
+    {
+        //do nothing - closing the window is handled by modal panel class
+    }
+
+
 }
 
 
