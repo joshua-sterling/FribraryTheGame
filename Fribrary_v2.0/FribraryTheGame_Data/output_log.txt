@@ -19,7 +19,7 @@ Platform assembly: E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\Frib
 Loading E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\FribraryTheGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\FribraryTheGame_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\FribraryTheGame_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.022 seconds
+- Completed reload, in  0.021 seconds
 Platform assembly: E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\FribraryTheGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Joshua\Documents\GitHub\FribraryTheGame\Fribrary_v2.0\FribraryTheGame_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 144Hz; virtual: 5760x1200 at -1920,0

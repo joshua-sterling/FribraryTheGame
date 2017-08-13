@@ -17,11 +17,7 @@ public class inventoryButton : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-       
-    }
-
+	// Unity function that updates UI elements when changed
     private void OnGUI()
     {
         //update the inventory in the GUI so that it changes as items are picked up
